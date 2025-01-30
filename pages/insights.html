@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TapStructures - Insights</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/insights.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="/">TapStructures</a>
+            </div>
+            <div class="nav-links">
+                <a href="/about.html" class="nav-item"><i class="fas fa-user"></i> About</a>
+                <a href="/projects.html" class="nav-item"><i class="fas fa-code-branch"></i> Projects</a>
+                <a href="/insights.html" class="nav-item"><i class="fas fa-lightbulb"></i> Insights</a>
+                <a href="/gallery.html" class="nav-item"><i class="fas fa-images"></i> Gallery</a>
+                <a href="/contact.html" class="nav-item"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="content">
+        <section class="insights-hero">
+            <h1>Insights</h1>
+            <p class="insights-intro">Thoughts on construction, technology, and innovation</p>
+        </section>
+
+        <section class="insights-categories">
+            <button class="category-btn active" data-category="all">All Posts</button>
+            <button class="category-btn" data-category="construction">Construction</button>
+            <button class="category-btn" data-category="tech">Technology</button>
+            <button class="category-btn" data-category="innovation">Innovation</button>
+        </section>
+
+        <section class="featured-post">
+            <article class="featured-card">
+                <div class="featured-content">
+                    <span class="post-category">Innovation</span>
+                    <h2>Merging Tradition and Intelligence</h2>
+                    <p>Exploring how AI and traditional construction practices can work together to create better outcomes.</p>
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> Jan 28, 2024</span>
+                        <span><i class="far fa-clock"></i> 5 min read</span>
+                    </div>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </article>
+        </section>
+
+        <section class="posts-grid">
+            <article class="post-card" data-category="tech">
+                <div class="post-content">
+                    <span class="post-category">Technology</span>
+                    <h3>AI in Construction</h3>
+                    <p>How artificial intelligence is reshaping the construction industry...</p>
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> Jan 25, 2024</span>
+                        <span><i class="far fa-clock"></i> 3 min read</span>
+                    </div>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="post-card" data-category="construction">
+                <div class="post-content">
+                    <span class="post-category">Construction</span>
+                    <h3>Field Engineering Insights</h3>
+                    <p>Lessons learned from managing large-scale construction projects...</p>
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> Jan 20, 2024</span>
+                        <span><i class="far fa-clock"></i> 4 min read</span>
+                    </div>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="post-card" data-category="innovation">
+                <div class="post-content">
+                    <span class="post-category">Innovation</span>
+                    <h3>Future of Construction Tech</h3>
+                    <p>Exploring emerging technologies in the construction industry...</p>
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> Jan 15, 2024</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                    </div>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </article>
+        </section>
+
+        <div class="pagination">
+            <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+            <div class="page-numbers">
+                <span class="page-number active">1</span>
+                <span class="page-number">2</span>
+                <span class="page-number">3</span>
+            </div>
+            <button class="pagination-btn">Next <i class="fas fa-chevron-right"></i></button>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <p>&copy; 2025 TapStructures. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/nav.js"></script>
+    <script src="/scripts/insights.js"></script>
+</body>
+</html>

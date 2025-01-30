@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TapStructures - Page Title</title>
+        <link rel="stylesheet" href="/styles/main.css">
+        <link rel="stylesheet" href="/styles/nav.css">
+        <link rel="stylesheet" href="/styles/projects.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    </head>
+<body>
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="/index.html">TapStructures</a>
+            </div>
+            <div class="nav-links">
+                <a href="/pages/about.html" class="nav-item"><i class="fas fa-user"></i> About</a>
+                <a href="/pages/projects.html" class="nav-item"><i class="fas fa-code-branch"></i> Projects</a>
+                <a href="/pages/insights.html" class="nav-item"><i class="fas fa-lightbulb"></i> Insights</a>
+                <a href="/pages/gallery.html" class="nav-item"><i class="fas fa-images"></i> Gallery</a>
+                <a href="/pages/contact.html" class="nav-item"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="content">
+        <section class="projects-hero">
+            <h1>Projects</h1>
+            <p class="projects-intro">Exploring the intersection of construction and technology</p>
+        </section>
+
+        <section class="project-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="construction">Construction</button>
+            <button class="filter-btn" data-filter="tech">Technology</button>
+            <button class="filter-btn" data-filter="web">Web Development</button>
+        </section>
+
+        <section class="projects-grid">
+            <article class="project-card" data-category="construction">
+                <div class="project-content">
+                    <h3>Ascend at Chisholm Trail</h3>
+                    <p>Field Engineer on 388-unit multifamily community.</p>
+                    <div class="project-tags">
+                        <span class="tag">Construction</span>
+                        <span class="tag">Project Management</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Learn More</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card" data-category="tech">
+                <div class="project-content">
+                    <h3>Construction RAG</h3>
+                    <p>Building an AI-powered construction knowledge assistant to empower on-site personnel and improve project quality.</p>
+                    <div class="project-tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">Development</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Project</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card" data-category="web">
+                <div class="project-content">
+                    <h3>TapStructures Website</h3>
+                    <p>My portfolio and blog showcasing projects and insights about anything from Construction to Large Language Models.</p>
+                    <div class="project-tags">
+                        <span class="tag">Web Development</span>
+                        <span class="tag">Design</span>
+                        <span class="tag">Project Engineering</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Site</a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <p>&copy; 2025 TapStructures. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/nav.js"></script>
+    <script src="/scripts/app.js"></script>
+    <script src="/scripts/projects.js"></script>
+</body>
+</html>

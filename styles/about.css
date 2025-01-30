@@ -1,0 +1,410 @@
+/* Color Variables */
+:root {
+    --bg-primary: #f5f7fa;
+    --bg-secondary: #e9eef5;
+    --text-primary: #2d3748;
+    --text-secondary: #4a5568;
+    --accent-primary: #4299e1;
+    --accent-secondary: #63b3ed;
+    --gradient-soft: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    --shadow-soft: 0 5px 15px rgba(45, 55, 72, 0.1);
+    --shadow-hover: 0 8px 25px rgba(45, 55, 72, 0.15);
+}
+
+/* Hero Section */
+.about-hero {
+    background: var(--gradient-soft);
+    padding: 6rem 0;
+    position: relative;
+}
+
+.about-text h1 {
+    color: var(--text-primary);
+}
+
+.intro {
+    color: var(--text-secondary);
+}
+
+/* Tech Stack Section (New) */
+.tech-stack {
+    padding: 4rem 0;
+    background: var(--bg-primary);
+}
+
+.tech-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 2rem;
+    align-items: center;
+    justify-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.tech-item {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.tech-item:hover {
+    transform: translateY(-5px);
+}
+
+.tech-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+}
+
+.tech-name {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Timeline Section */
+.timeline {
+    position: relative;
+    background: var(--bg-primary);
+}
+
+.timeline-content {
+    background: white;
+    border-left: 4px solid var(--accent-primary);
+}
+
+.timeline-content:hover {
+    border-left-color: var(--accent-secondary);
+}
+
+/* Skills Section */
+.skills {
+    background: var(--gradient-soft);
+}
+
+.skill-category {
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+}
+
+.skill-category:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.skill-category h3 {
+    color: var(--text-primary);
+}
+
+.skill-category li {
+    color: var(--text-secondary);
+}
+
+.skill-category li:hover {
+    color: var(--accent-primary);
+}
+
+/* Project Images Section (New) */
+.project-showcase {
+    padding: 4rem 0;
+    background: var(--bg-primary);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.project-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 1.5rem;
+}
+
+.project-info h3 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.project-info p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Vision Section */
+.vision {
+    background: var(--gradient-soft);
+}
+
+.vision-content {
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+    padding: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tech-stack-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* About Page Styles */
+.about-hero {
+    padding: 4rem 0;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.about-text {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.intro {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Timeline Styles */
+.timeline {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline-item {
+    margin: 2rem 0;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.timeline-content {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.skill-category {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.skill-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.skill-category h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skill-category li {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.skill-category li:hover {
+    transform: translateX(10px);
+    color: var(--accent-color);
+}
+
+.skill-category li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.skill-category li:hover::before {
+    opacity: 1;
+}
+
+/* Vision Section */
+.vision {
+    background: linear-gradient(to left, #f8f9fa, #e9ecef);
+    padding: 4rem 0;
+    margin-top: 4rem;
+}
+
+.vision-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-container {
+        padding: 0 1rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-text h1 {
+        font-size: 2rem;
+    }
+}
+/* Add these animation classes to your existing about.css */
+
+/* Timeline animations */
+.timeline-item-hidden {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.6s ease;
+}
+
+.timeline-item:nth-child(even).timeline-item-hidden {
+    transform: translateX(50px);
+}
+
+.timeline-item.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Skills animations */
+.skill-category-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.skill-category.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Active state for skill items */
+.skill-category li.active {
+    color: var(--accent-color);
+    transform: translateX(10px);
+}
+
+/* Timeline hover effects */
+.timeline-content {
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent-color);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+}
+
+.timeline-content:hover::before {
+    transform: scaleY(1);
+}
+
+/* Skill category hover effects */
+.skill-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.skill-category li {
+    transition: all 0.3s ease;
+}
+
+.skill-category:hover li {
+    padding-left: 1.8rem;
+}
+
+/* Vision section animation */
+.vision-content {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease 0.3s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
