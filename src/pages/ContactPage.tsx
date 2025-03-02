@@ -113,36 +113,55 @@ const ContactPage: React.FC = () => {
   } = useForm<FormData>();
   
   // Form submission handler
-  const onSubmit = async (data: FormData) => {
-    // Check honeypot for bot detection
-    if (data.honeypot) {
-      // It's a bot if honeypot is filled
-      return; 
+const onSubmit = async (data: FormData) => {
+  // Check honeypot for bot detection
+  if (data.honeypot) {
+    return; // It's a bot if honeypot is filled
+  }
+  
+  setIsSubmitting(true);
+  setSubmitError(null);
+  
+  try {
+    const formspreeCode = process.env.REACT_APP_FORMSPREE_CODE;
+    if (!formspreeCode) {
+      throw new Error('Form configuration error');
     }
     
-    setIsSubmitting(true);
-    setSubmitError(null);
+    const response = await fetch(`https://formspree.io/f/${formspreeCode}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        subject: data.subject || 'New Contact from Website',
+        message: data.message
+      }),
+    });
     
-    try {
-      // In a real implementation, you would send the form data to your backend
-      // For demo purposes, we're simulating a successful API call
-      
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setSubmitSuccess(true);
-      reset(); // Reset form fields
-      
-      // Hide success message after 5 seconds
-      setTimeout(() => {
-        setSubmitSuccess(false);
-      }, 5000);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitError('There was an error sending your message. Please try again later.');
-    } finally {
-      setIsSubmitting(false);
+    const result = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(result.error || 'Failed to send message');
     }
-  };
+    
+    setSubmitSuccess(true);
+    reset(); // Reset form fields
+    
+    // Hide success message after 5 seconds
+    setTimeout(() => {
+      setSubmitSuccess(false);
+    }, 5000);
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    setSubmitError('There was an error sending your message. Please try again later.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
   
   return (
     <ContactSection>
