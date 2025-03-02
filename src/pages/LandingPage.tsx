@@ -122,7 +122,7 @@ const featureCards = [
   {
     icon: '💡',
     title: 'Fresh Approaches',
-    description: 'We\'re bringing a fresh set of eyes to a hardened team of industry professionals with the full power of AI technologies to implement creative approaches and solve deep-rooted problems across industries. Unbound by traditional practices but humbly grounded in their battle-tested experience.'
+    description: 'We\'re bringing a fresh set of eyes to a hardened team of professionals with the full power of AI technologies to implement creative approaches and solve deep-seated issues across industries. Unbound by obsolete practices but humbly grounded in their battle-tested experience.'
   }
 ];
 
@@ -203,8 +203,8 @@ const LandingPage: React.FC = () => {
               <SectionHeading>Ready to Get Started?</SectionHeading>
               <HeroSubheading>
                 Hi, I'm Matt Tap! A builder wielding a passion for solving complex problems with out-of-the-box solutions.
-                I'm currently working towards building a stronger bridge between tradition and technology.
-                I envision an industry, built on the shoulders of giants, accelerated and empowered by almost unimaginable technological advancements. 
+                I'm currently working towards building a wider bridge between tradition and technology.
+                I envision an industry, built upon the shoulders of giants, accelerated and empowered by almost unimaginable technological advancements. 
                 We will send shockwaves through the industry, and I'm looking for like-minded individuals to join me on this journey. Lets shape the future together.
               </HeroSubheading>
             </motion.div>

@@ -38,20 +38,6 @@ const SkillsGrid = styled.div`
   margin-top: 2rem;
 `;
 
-const SkillItem = styled(motion.div)`
-  background-color: white;
-  padding: 1rem;
-  border-radius: ${props => props.theme.borderRadius};
-  box-shadow: ${props => props.theme.boxShadow};
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-`;
-
-const SkillIcon = styled.div`
-  color: ${props => props.theme.colors.primary};
-  font-size: 1.25rem;
-`;
 
 const SkillName = styled.span`
   font-weight: 500;
@@ -190,24 +176,51 @@ const SkillDescription = styled.p`
 const AboutPage: React.FC = () => {
   // Skills data array with icons for visual representation
   const skills = [
-    { name: 'C++, Java, Python, HTML/CSS, Bluebeam, Excel, git. ---- Some C, Assembly, JavaScript, React, Node.js, PyTorch, and more.',
-      icon: '💻' },
+    { name: 'C++, Java, Python, HTML/CSS, Bluebeam, Excel, git.',
+      icon: '💻',
+      proficiency: 90, // Percentage of proficiency
+      description: 'Educational background and creating personal projects and applications.'
+    },
+    { name: 'C, Assembly, JavaScript, React, Node.js, PyTorch, and more.',
+      icon: '💻',
+      proficiency: 65, // Percentage of proficiency
+      description: 'Educational background and development experience.'
+    },
     { name: 'Artificial Intelligence literacy and experience',
-      icon: '💻' },
-    { name: 'Field Engineering, Project Management, Technical Coordination',
-      icon: '🏗️' },
-    { name: 'Construction Scheduling and Quality Assurance',
-      icon: '🏗️' },
-    { name: 'Generate markups and reports, handle on-site coordination, and provide quality control/assurance',
-      icon: '🏗️' },
-    { name: 'Project Management, including scope, budgeting, contracts, RFIs, submittals, and more',
-      icon: '💰' },
-    { name: 'ADA/FHA/TAS/ANSI. Ensuring compliance',
-      icon: '🔄' },
-    { name: 'Local, State, and Federal Regulations & Codes, including OSHA',
-      icon: '🔄' },
+      icon: '💻',
+      proficiency: 80, // Percentage of proficiency
+      description: 'Machine learning, AI agents, RAG architectures, and deep learning frameworks.'
+    },
+    { name: 'Field Expertise',
+      icon: '🏗️',
+      proficiency: 85,
+      description: 'Scope, budgeting, contracts, RFIs, submittals, punch lists, and building turnover.' 
+    },
+    { name: 'Project Management',
+      icon: '🏗️',
+      proficiency: 80,
+      description: 'Scope, budgeting, contracts, RFIs, submittals, punch lists, and building turnover.' 
+    },
+    { name: 'Construction Scheduling and on-time Project Delivery',
+      icon: '🏗️',
+      proficiency: 90,
+      description: 'Scheduling, coordinating, and managing subcontractors to ensure on-time completion of the project.' },
+    { name: 'Markup, Report, and Status Generation',
+      icon: '🏗️',
+      proficiency: 95,
+      description: 'Generating markups and reports, create visual status updates, and track material/equipment deliveries.' },
+    { name: 'ADA/FHA/TAS/ANSI Compliance',
+      icon: '📘',
+      proficiency: 75,
+      description: 'Ensuring compliance with ADA, FHA, TAS, and ANSI standards.' },
+    { name: 'Experience with Local, State, and Federal Regulations & Codes, including OSHA',
+      icon: '🔄',
+      proficiency: 75,
+      description: 'Understanding and adhering to local, state, and federal regulations and codes, including OSHA.' },
     { name: 'City & 3rd-Party Inspections and Materials Testing',
-      icon: '🔄' }, 
+      icon: '🔄',
+      proficiency: 90,
+      description: 'Inspecting and testing materials and systems to ensure compliance with specifications and standards.' }, 
     
   ];
 
@@ -216,12 +229,12 @@ const AboutPage: React.FC = () => {
     {
       title: 'Multifamily Development',
       description: '388-unit luxury apartment community with modern amenities in Fort Worth, TX.\n',
-      role: 'Initial field engineering role focused on on-site coordination.As an Assistant Superintendent, I work with dozens of skilled subcontractors and vendors ensuring project quality and timely completion.'
+      role: 'Initial field engineering role focused on on-site coordination.'
     },
     {
       title: 'Multifamily Development',
       description: '261-unit luxury apartment community with modern amenities in Grand Prairie, TX.',
-      role: 'Initial field engineering role focused on on-site coordination.As an Assistant Superintendent, I work with dozens of skilled subcontractors and vendors ensuring project quality and timely completion.'
+      role: 'As Assistant Superintendent, I work with dozens of skilled subcontractors and vendors ensuring project quality and timely completion.'
     },
     {
       title: 'Responsive Web and Embedded Services',
@@ -249,7 +262,7 @@ const AboutPage: React.FC = () => {
               <BioText>
                 With a vision to build a business that transforms industries, I'm focused on creating solutions 
                 that weld optimized tools to the foundation of Industry Standard. My background in construction and 
-                computer science gives me a unique perspective on how to approach complex projects with efficiency and creativity.
+                computer science gives me a unique perspective on large scale architectures and how to approach complex projects with efficiency and creativity.
               </BioText>
             </BioSection>
           </motion.div>
@@ -274,9 +287,14 @@ const AboutPage: React.FC = () => {
                 <SkillDetails>
                   <SkillNameAndLevel>
                     <SkillName>{skill.name}</SkillName>
+                    <SkillLevel>{skill.proficiency}%</SkillLevel>
                   </SkillNameAndLevel>
+                  <ProgressBarContainer>
+                    <ProgressBar $progress={skill.proficiency} />
+                  </ProgressBarContainer>
                 </SkillDetails>
               </SkillHeader>
+              <SkillDescription>{skill.description}</SkillDescription>
             </EnhancedSkillCard>
           </motion.div>
         ))}
