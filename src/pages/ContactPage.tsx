@@ -115,62 +115,52 @@ const ContactPage: React.FC = () => {
   } = useForm<FormData>();
   
   // Form submission handler
-  const onSubmit = async (data: FormData) => {
-    // Check honeypot for bot detection
-    if (data.honeypot) {
-      return; // It's a bot if honeypot is filled
+  // In src/pages/ContactPage.tsx
+const onSubmit = async (data: FormData) => {
+  // Check honeypot for bot detection
+  if (data.honeypot) {
+    return; // It's a bot if honeypot is filled
+  }
+  
+  setIsSubmitting(true);
+  setSubmitError(null);
+  
+  try {
+    // Direct implementation with hard-coded Formspree endpoint (temporary for debugging)
+    const response = await fetch('https://formspree.io/f/mdkaqwdo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        subject: data.subject || 'New Contact from Website',
+        message: data.message
+      }),
+    });
+    
+    const result = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(result.error || 'Failed to send message');
     }
     
-    // Get the Formspree code from environment variables
-    const formspreeCode = process.env.REACT_APP_FORMSPREE_CODE || DEFAULT_FORMSPREE_CODE;
+    setSubmitSuccess(true);
+    reset(); // Reset form fields
     
-    // Log for debugging (remove in production)
-    console.log("Using Formspree code:", formspreeCode ? "Configured" : "Missing");
-    
-    // Validate configuration
-    if (!formspreeCode) {
-      setSubmitError('Contact form is not properly configured. Please contact the administrator.');
-      return;
-    }
-    
-    setIsSubmitting(true);
-    setSubmitError(null);
-    
-    try {
-      const response = await fetch(`https://formspree.io/f/${formspreeCode}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          subject: data.subject || 'New Contact from Website',
-          message: data.message
-        }),
-      });
-      
-      const result = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to send message');
-      }
-      
-      setSubmitSuccess(true);
-      reset(); // Reset form fields
-      
-      // Hide success message after 5 seconds
-      setTimeout(() => {
-        setSubmitSuccess(false);
-      }, 5000);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitError('There was an error sending your message. Please try again later.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    // Hide success message after 5 seconds
+    setTimeout(() => {
+      setSubmitSuccess(false);
+    }, 5000);
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    setSubmitError('There was an error sending your message. Please try again later.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
   
   return (
     <ContactSection>
