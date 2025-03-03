@@ -3,14 +3,53 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
+import mascotImage from '../assets/images/test-img-01.webp';
 import Container from '../components/common/Container';
 import Button from '../components/common/Button';
 
-const DEFAULT_FORMSPREE_CODE = ""; // Leave empty in production, fill only for local testing
 
 // Styled components for layout and form elements
 const ContactSection = styled.section`
   padding: 5rem 0;
+`;
+
+// New flexible container for layout
+const FlexContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
+// Left column for form
+const FormColumn = styled.div`
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+`;
+
+// Right column for mascot
+const MascotColumn = styled.div`
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  
+  @media (max-width: 1024px) {
+    order: -1; // Places mascot above form on mobile
+    width: 100%;
+    padding: 0 0 2rem 0;
+  }
+`;
+
+const MascotImage = styled.img`
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 `;
 
 const PageHeading = styled.h1`
@@ -26,7 +65,7 @@ const ContactDescription = styled.p`
 `;
 
 const ContactForm = styled.form`
-  max-width: 600px;
+  width: 100%;
 `;
 
 const FormGroup = styled.div`
@@ -115,52 +154,51 @@ const ContactPage: React.FC = () => {
   } = useForm<FormData>();
   
   // Form submission handler
-  // In src/pages/ContactPage.tsx
-const onSubmit = async (data: FormData) => {
-  // Check honeypot for bot detection
-  if (data.honeypot) {
-    return; // It's a bot if honeypot is filled
-  }
-  
-  setIsSubmitting(true);
-  setSubmitError(null);
-  
-  try {
-    // Direct implementation with hard-coded Formspree endpoint (temporary for debugging)
-    const response = await fetch('https://formspree.io/f/mdkaqwdo', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-        subject: data.subject || 'New Contact from Website',
-        message: data.message
-      }),
-    });
-    
-    const result = await response.json();
-    
-    if (!response.ok) {
-      throw new Error(result.error || 'Failed to send message');
+  const onSubmit = async (data: FormData) => {
+    // Check honeypot for bot detection
+    if (data.honeypot) {
+      return; // It's a bot if honeypot is filled
     }
     
-    setSubmitSuccess(true);
-    reset(); // Reset form fields
+    setIsSubmitting(true);
+    setSubmitError(null);
     
-    // Hide success message after 5 seconds
-    setTimeout(() => {
-      setSubmitSuccess(false);
-    }, 5000);
-  } catch (error) {
-    console.error('Error submitting form:', error);
-    setSubmitError('There was an error sending your message. Please try again later.');
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+    try {
+      // Direct implementation with hard-coded Formspree endpoint (temporary for debugging)
+      const response = await fetch('https://formspree.io/f/mdkaqwdo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          subject: data.subject || 'New Contact from Website',
+          message: data.message
+        }),
+      });
+      
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message');
+      }
+      
+      setSubmitSuccess(true);
+      reset(); // Reset form fields
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        setSubmitSuccess(false);
+      }, 5000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitError('There was an error sending your message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   
   return (
     <ContactSection>
@@ -171,86 +209,99 @@ const onSubmit = async (data: FormData) => {
           and I'll get back to you as soon as possible.
         </ContactDescription>
         
-        {submitSuccess && (
-          <SuccessMessage
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            Your message has been sent successfully! I'll get back to you soon.
-          </SuccessMessage>
-        )}
-        
-        {submitError && (
-          <ErrorMessage>{submitError}</ErrorMessage>
-        )}
-        
-        <ContactForm onSubmit={handleSubmit(onSubmit)}>
-          <FormGroup>
-            <Label htmlFor="name">Name</Label>
-            <Input 
-              id="name"
-              type="text"
-              {...register('name', { required: 'Name is required' })}
-              aria-invalid={errors.name ? 'true' : 'false'}
-            />
-            {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
-          </FormGroup>
+        <FlexContainer>
+          <FormColumn>
+            {submitSuccess && (
+              <SuccessMessage
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                Your message has been sent successfully! I'll get back to you soon.
+              </SuccessMessage>
+            )}
+            
+            {submitError && (
+              <ErrorMessage>{submitError}</ErrorMessage>
+            )}
+            
+            <ContactForm onSubmit={handleSubmit(onSubmit)}>
+              <FormGroup>
+                <Label htmlFor="name">Name</Label>
+                <Input 
+                  id="name"
+                  type="text"
+                  {...register('name', { required: 'Name is required' })}
+                  aria-invalid={errors.name ? 'true' : 'false'}
+                />
+                {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
+              </FormGroup>
+              
+              <FormGroup>
+                <Label htmlFor="email">Email</Label>
+                <Input 
+                  id="email"
+                  type="email"
+                  {...register('email', { 
+                    required: 'Email is required',
+                    pattern: {
+                      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                      message: 'Please enter a valid email'
+                    }
+                  })}
+                  aria-invalid={errors.email ? 'true' : 'false'}
+                />
+                {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+              </FormGroup>
+              
+              <FormGroup>
+                <Label htmlFor="subject">Subject (Optional)</Label>
+                <Input 
+                  id="subject"
+                  type="text"
+                  {...register('subject')}
+                />
+              </FormGroup>
+              
+              <FormGroup>
+                <Label htmlFor="message">Message</Label>
+                <Textarea 
+                  id="message"
+                  {...register('message', { required: 'Message is required' })}
+                  aria-invalid={errors.message ? 'true' : 'false'}
+                />
+                {errors.message && <ErrorMessage>{errors.message.message}</ErrorMessage>}
+              </FormGroup>
+              
+              {/* Hidden honeypot field to catch bots */}
+              <HoneypotField>
+                <Input 
+                  type="text"
+                  {...register('honeypot')}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </HoneypotField>
+              
+              <Button 
+                type="submit" 
+                primary 
+                large
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </Button>
+            </ContactForm>
+          </FormColumn>
           
-          <FormGroup>
-            <Label htmlFor="email">Email</Label>
-            <Input 
-              id="email"
-              type="email"
-              {...register('email', { 
-                required: 'Email is required',
-                pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                  message: 'Please enter a valid email'
-                }
-              })}
-              aria-invalid={errors.email ? 'true' : 'false'}
+          <MascotColumn>
+            <MascotImage 
+              src={mascotImage} 
+              alt="TAP Construction Mascot" 
+              width="400"
+              height="400"
             />
-            {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
-          </FormGroup>
-          
-          <FormGroup>
-            <Label htmlFor="subject">Subject (Optional)</Label>
-            <Input 
-              id="subject"
-              type="text"
-              {...register('subject')}
-            />
-          </FormGroup>
-          
-          <FormGroup>
-            <Label htmlFor="message">Message</Label>
-            <Textarea 
-              id="message"
-              {...register('message', { required: 'Message is required' })}
-              aria-invalid={errors.message ? 'true' : 'false'}
-            />
-            {errors.message && <ErrorMessage>{errors.message.message}</ErrorMessage>}
-          </FormGroup>
-          
-          {/* Hidden honeypot field to catch bots */}
-          <HoneypotField>
-            <Input 
-              type="text"
-              {...register('honeypot')}
-              tabIndex={-1}
-              autoComplete="off"
-            />
-          </HoneypotField>
-          
-          <Button 
-            type="submit" 
-            primary 
-            large
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'Sending...' : 'Send Message'}
-          </Button>
-        </ContactForm>
+          </MascotColumn>
+        </FlexContainer>
       </Container>
     </ContactSection>
   );
