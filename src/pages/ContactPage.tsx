@@ -127,7 +127,7 @@ const onSubmit = async (data: FormData) => {
   
   try {
     // Direct implementation with hard-coded Formspree endpoint (temporary for debugging)
-    const response = await fetch(process.env.REACT_APP_FORMSPREE_ENDPOINT || '', {
+    const response = await fetch('https://formspree.io/f/mdkaqwdo', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
