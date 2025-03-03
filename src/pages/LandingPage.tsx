@@ -203,7 +203,7 @@ const LandingPage: React.FC = () => {
               <SectionHeading>Ready to Get Started?</SectionHeading>
               <HeroSubheading>
                 Hi, I'm Matt Tap! A builder wielding a passion for solving complex problems with out-of-the-box solutions.
-                I'm currently working towards building a wider bridge between tradition and technology.
+                I'm currently working towards constructing a wider bridge between tradition and technology.
                 I envision an industry mounted on the shoulders of giants and empowered by almost unimaginable technological advancements. 
                 I'm looking to send shockwaves through the industry, and for like-minded individuals to join me on this journey. Lets shape the future together.
               </HeroSubheading>
