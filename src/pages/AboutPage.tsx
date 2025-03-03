@@ -193,18 +193,14 @@ const AboutPage: React.FC = () => {
     },
     { name: 'Field Expertise',
       icon: '🏗️',
-      proficiency: 85,
-      description: 'Scope, budgeting, contracts, RFIs, submittals, punch lists, and building turnover.' 
+      proficiency: 90,
+      description: 'Construction scheduling, coordinating, and managing subcontractors to ensure on-time completion of the project.' 
     },
     { name: 'Project Management',
       icon: '🏗️',
       proficiency: 80,
       description: 'Scope, budgeting, contracts, RFIs, submittals, punch lists, and building turnover.' 
     },
-    { name: 'Construction Scheduling and on-time Project Delivery',
-      icon: '🏗️',
-      proficiency: 90,
-      description: 'Scheduling, coordinating, and managing subcontractors to ensure on-time completion of the project.' },
     { name: 'Markup, Report, and Status Generation',
       icon: '🏗️',
       proficiency: 95,

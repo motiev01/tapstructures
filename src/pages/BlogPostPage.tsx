@@ -18,29 +18,29 @@ interface Comment {
   date: string;
 }
 
-const sampleComments: Comment[] = [
-  {
-    id: 1,
-    postId: 1,
-    author: "Jane Smith",
-    content: "Great insights! I've been seeing more AI tools used in our projects as well. Would love to hear more about specific applications you've found effective.",
-    date: "2024-10-16T14:30:00Z"
-  },
-  {
-    id: 2,
-    postId: 1,
-    author: "Michael Chen",
-    content: "The balance between AI automation and human oversight is indeed critical. I appreciate your nuanced take on this topic.",
-    date: "2024-10-17T09:15:00Z"
-  },
-  {
-    id: 3,
-    postId: 2,
-    author: "Sarah Johnson",
-    content: "I've been exploring mass timber as well. Have you looked into the regulatory challenges in different regions?",
-    date: "2024-10-02T16:45:00Z"
-  }
-];
+//const sampleComments: Comment[] = [
+//  {
+//    id: 1,
+//    postId: 1,
+//    author: "Jane Smith",
+//    content: "Great insights! I've been seeing more AI tools used in our projects as well. Would love to hear more about specific applications you've found effective.",
+//    date: "2024-10-16T14:30:00Z"
+//  },
+//  {
+//    id: 2,
+//    postId: 1,
+//    author: "Michael Chen",
+//    content: "The balance between AI automation and human oversight is indeed critical. I appreciate your nuanced take on this topic.",
+//    date: "2024-10-17T09:15:00Z"
+//  },
+//  {
+//    id: 3,
+//    postId: 2,
+//    author: "Sarah Johnson",
+//    content: "I've been exploring mass timber as well. Have you looked into the regulatory challenges in different regions?",
+//    date: "2024-10-02T16:45:00Z"
+//  }
+//];
 
 // Styled components for the blog post page layout and elements
 const PostContainer = styled.article`
@@ -312,13 +312,13 @@ const BlogPostPage: React.FC = () => {
   const post = blogPosts.find(post => post.id.toString() === id);
   
   // Effect hook to load comments when the post ID changes
-  useEffect(() => {
-    // Simulate API call to fetch comments for the current post
-    if (id) {
-      const postComments = sampleComments.filter(comment => comment.postId.toString() === id);
-      setComments(postComments);
-    }
-  }, [id]);
+//  useEffect(() => {
+//    // Simulate API call to fetch comments for the current post
+//    if (id) {
+//      const postComments = sampleComments.filter(comment => comment.postId.toString() === id);
+//      setComments(postComments);
+//    }
+//  }, [id]);
   
   // Redirect if the post doesn't exist
   useEffect(() => {
