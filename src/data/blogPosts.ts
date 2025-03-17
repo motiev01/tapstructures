@@ -22,8 +22,14 @@ export interface BlogPost {
     {
       id: 1,
       title: 'AI in Construction: My Take',
-      preview: 'Artificial intelligence will transform the construction industry in profound ways, from design optimization and risk assessment to...',
-      content: 'Artificial intelligence is transforming the construction industry in profound ways, from design optimization and risk assessment to all out Constuction Drawing generation. As someone working at the intersection of technology and construction, I\'ve seen the benefits of using modern technologies firsthand(and knowing how to wield them), in comparison to the "old days"\n\nAI-powered tools will enhance, accelerate, and empower us to predict project timelines with greater accuracy, identify potential safety hazards before they become problems, and optimize resource allocation across complex projects(more efficient and effective). \n\nHowever, the human element remains more important than ever - AI serves as an enhancement to skilled professionals, not a replacement. The most successful implementations I\'ve seen maintain this balance, using AI to handle repetitive tasks while freeing human expertise for creative problem-solving and relationship management.',
+      preview: 'Artificial intelligence is transforming the construction industry in profound ways, from design optimization and risk assessment to...',
+      content: `Artificial intelligence is reshaping the construction industry in ways that were unimaginable just a decade or even years ago. From optimizing project designs and assessing scope gaps to generating detailed IFC set and Professional Architect approved construction drawings AI is a game changer. As someone who's working at the intersection of technology and construction I’ve seen firsthand how these modern tools outperform the old days methods in specific use cases and I’ve learned the importance of using them well.
+
+                AI powered tools will enhance our performance accelerate progress and empower us to tackle complex challenges of day to day construction with instantly and effortlessly. We will be able to train models privately and securely encrypted to predict project timelines with crazy accuracy spot potential safety hazards violations before they turn into costly problems pick up any fine details that slipped through the cracks during review and optimize resource allocation across even the trickiest projects. These advancements don’t just make us more efficient they make us more superhuman letting us deliver better results while cutting waste and time that bloats the industry.
+                
+                I'm a full believer and see AI’s huge potential yet the human element is still more critical than ever. AI isn’t a replacement for skilled pros it’s an enhancement. Let me say that again. AI IS NOT A REPLACEMENT for everyone. I believe the best implementations will strike a careful balance. AI is great at handling repetitive data heavy tasks like crunching numbers for cost estimates or flagging potential delays which frees up human expertise for creative problem solving and relationship management. The bread and butter of construction and most industries. A well designed building isn’t just about numbers it’s about understanding local jurisdictions client wants needs and navigating the surprises that will surely pop up.
+
+                As we move forward the key to success is embracing AI as a partner not a crutch. Construction pros need to learn how to weave these tools into their daily work while keeping their edge on the skills that machines can’t touch like thinking on their feet adapting to chaos and building real trust with people. That’s how we’ll tap into AI’s power to build smarter safer and more sustainable projects without losing what makes this industry kick.`,
       date: '2025-03-02',
       readTime: 2, // minutes
       tags: ['Technology', 'Construction', 'Innovation']
@@ -31,9 +37,9 @@ export interface BlogPost {
     {
       id: 2,
       title: 'From Concept to Completion: Managing Complex Projects',
-      preview: '',
+      preview: 'Coming soon...',
       content: '',
-      date: '2025-03-02',
+      date: '2025-03-16',
       readTime: 0,
       tags: ['Project Management', 'Field Engineering', 'Leadership']
     },
@@ -49,11 +55,11 @@ export interface BlogPost {
     {
       id: 4, // Make sure this is unique and one higher than the previous highest ID
       title: 'Exploring the Future of Construction Technology',
-      preview: 'We are living in the future, and the construction industry is no exception.',
-      content: 'The full content of your blog post. You can use \n\n to create paragraph breaks that will render properly on the page.',
+      preview: 'We are living in the future, and the construction industry is no exception...',
+      content: 'Full content coming soon',
       date: '2025-03-02', // Use YYYY-MM-DD format
       readTime: 0, // Estimated reading time in minutes
-      tags: ['Relevant', 'Tags', 'Here'],
+      tags: ['Technology', 'Construction', 'Vision'],
       images: [testImg01]
     }
   ];

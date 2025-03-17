@@ -165,7 +165,7 @@ const ContactPage: React.FC = () => {
     
     try {
       // Direct implementation with hard-coded Formspree endpoint (temporary for debugging)
-      const response = await fetch('https://formspree.io/f/mdkaqwdo', {
+      const response = await fetch(process.env.REACT_APP_FORMSPREE_ENDPOINT || '', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
