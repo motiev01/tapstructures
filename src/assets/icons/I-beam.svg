@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="100" height="100">
+  <!-- I-Beam -->
+  <path d="M7,2L5,5H19L17,2H7M5,6V21H7V6H5M17,6V21H19V6H17Z" 
+    fill="none" stroke="#937bff" stroke-width="0.8" />
+  <!-- Tech overlay -->
+  <line x1="8" y1="4" x2="16" y2="4" stroke="#937bff" stroke-width="0.3" stroke-dasharray="1,0.5" />
+  <line x1="8" y1="8" x2="16" y2="8" stroke="#937bff" stroke-width="0.3" stroke-dasharray="1,0.5" />
+  <line x1="8" y1="12" x2="16" y2="12" stroke="#937bff" stroke-width="0.3" stroke-dasharray="1,0.5" />
+  <line x1="8" y1="16" x2="16" y2="16" stroke="#937bff" stroke-width="0.3" stroke-dasharray="1,0.5" />
+  <!-- Circuit dots -->
+  <circle cx="8" cy="8" r="0.4" fill="#937bff" />
+  <circle cx="12" cy="8" r="0.4" fill="#937bff" />
+  <circle cx="16" cy="8" r="0.4" fill="#937bff" />
+  <circle cx="8" cy="16" r="0.4" fill="#937bff" />
+  <circle cx="12" cy="16" r="0.4" fill="#937bff" />
+  <circle cx="16" cy="16" r="0.4" fill="#937bff" />
+  <!-- Connecting lines -->
+  <line x1="8" y1="8" x2="8" y2="16" stroke="#937bff" stroke-width="0.3" />
+  <line x1="12" y1="8" x2="12" y2="16" stroke="#937bff" stroke-width="0.3" />
+  <line x1="16" y1="8" x2="16" y2="16" stroke="#937bff" stroke-width="0.3" />
+</svg>
