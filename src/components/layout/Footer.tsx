@@ -77,6 +77,7 @@ const Footer: React.FC = () => {
           <FooterLink to="/about">About</FooterLink>
           <FooterLink to="/insights">Insights</FooterLink>
           <FooterLink to="/contact">Contact</FooterLink>
+          <FooterLink to="/portfolio">Portfolio</FooterLink>
         </FooterSection>
         
         <FooterSection>
