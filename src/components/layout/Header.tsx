@@ -123,6 +123,7 @@ const Header: React.FC = () => {
         <NavLink to="/" $isActive={isActivePath('/')}>Home</NavLink>
         <NavLink to="/about" $isActive={isActivePath('/about')}>About</NavLink>
         <NavLink to="/insights" $isActive={isActivePath('/insights')}>Insights</NavLink>
+        <NavLink to="/portfolio" $isActive={isActivePath('/portfolio')}>Portfolio</NavLink>
         <NavLink to="/contact" $isActive={isActivePath('/contact')}>Contact</NavLink>
       </NavItems>
       

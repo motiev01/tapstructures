@@ -112,12 +112,12 @@ const featureCards = [
   {
     icon: '🏗️',
     title: 'Field & Project Management Solutions',
-    description: 'We provide comprehensive data-backed analysis, customized company architecture, field enhancements and tools, policy implementations, and much more... We\'re blending years of industry expertise with state of the art intelligence to create higher quality AND more profitable construction companies.'
+    description: 'We provide comprehensive data-driven results, customized company architecture and consultation, field enhancements and tools, document handling, and much more... We\'re blending years of industry expertise with state of the art intelligence to create higher quality AND more profitable construction companies.'
   },
   {
     icon: '💻',
     title: 'Software and Hardware Development',
-    description: 'Building customizable and unique solutions to empower a new generation of builders. We offer on-site tools and in-office solutions, web services that showcase your project quality, and enhanced connection with your partners and clients utilizing effective marketing strategies and support.'
+    description: 'Currently building customizable and unique solutions to empower a new generation of builders. We offer critical on-site tools, a powerhouse of in-office solutions, web services that showcase your project quality, and an elevated connection with your partners and clients utilizing effective marketing strategies and support.'
   },
   {
     icon: '💡',
