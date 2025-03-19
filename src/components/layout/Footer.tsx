@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
           <FooterHeading>TapStructures</FooterHeading>
           <FooterText>
             Merging innovation and expertise to pioneer a new path. 
-            Construction and development solutions that fasten new technology to tradition.
+            Construction and development solutions that inspire.
           </FooterText>
         </FooterSection>
         
@@ -76,8 +76,9 @@ const Footer: React.FC = () => {
           <FooterLink to="/">Home</FooterLink>
           <FooterLink to="/about">About</FooterLink>
           <FooterLink to="/insights">Insights</FooterLink>
-          <FooterLink to="/contact">Contact</FooterLink>
           <FooterLink to="/portfolio">Portfolio</FooterLink>
+          <FooterLink to="/contact">Contact</FooterLink>
+          
         </FooterSection>
         
         <FooterSection>
