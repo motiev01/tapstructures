@@ -122,9 +122,9 @@ const InsightsPage: React.FC = () => {
           Every blue moon, a spark of curiosity will ignite in me thats not easily extinguished. I hope to use this feature as a medium to explore these ideas and share
           them with those who are intrigued.
           These short reads reflect my experiences and perspectives on industry trends and innovations.
-          I'm no expert and claim no ethos towards the accuracy or fact-checking of this content other than what's explicity provided. As such I will do my best to ensure
-          validity and accuracy in my posts, but at the end of the day these are personal opinions and not an attempt at professional advice. I hope to inspire you
-          to learn something new or revisit an old idea with a fresh perspective.
+          I'm no expert and surely don't claim to be. I will do my best to ensure validity and accuracy in my posts,
+          but at the end of the day these are personal opinions and not an attempt at professional advice.
+          I hope to inspire you to learn something new or revisit an old idea with a fresh perspective.
         </PageDescription>
         
         {/* Animation container with staggered children animations */}
