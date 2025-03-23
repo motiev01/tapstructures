@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Container from '../components/common/Container';
 import Button from '../components/common/Button';
 import Card from '../components/common/Card';
+import excavatorImage from '../assets/images/Excavator-Tap-12.png';
 
 const HeroSection = styled.section`
   padding: 6rem 0;
@@ -87,6 +88,57 @@ const CTASection = styled.section`
   text-align: center;
 `;
 
+const ImageBackgroundSection = styled.section`
+  position: relative;
+  height: 80vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(${excavatorImage});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.7);
+    z-index: 1;
+  }
+`;
+
+const ImageContent = styled.div`
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+  width: 100%;
+`;
+
+const ImageHeading = styled(motion.h2)`
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+`;
+
+const ImageText = styled(motion.p)`
+  font-size: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+`;
+
 // Animation variants for staggered animations
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -164,6 +216,36 @@ const LandingPage: React.FC = () => {
           </motion.div>
         </Container>
       </HeroSection>
+
+      <ImageBackgroundSection>
+        <Container>
+          <ImageContent>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <ImageHeading variants={fadeIn}>
+                Building the Future of Construction
+              </ImageHeading>
+              <ImageText variants={fadeIn}>
+                Combining cutting-edge technology with industry expertise to revolutionize how we build
+              </ImageText>
+              <motion.div variants={fadeIn}>
+                <Button 
+                  as={Link} 
+                  to="/services" 
+                  primary 
+                  large
+                >
+                  Explore Our Services
+                </Button>
+              </motion.div>
+            </motion.div>
+          </ImageContent>
+        </Container>
+      </ImageBackgroundSection>
 
       <FeaturesSection>
         <Container>

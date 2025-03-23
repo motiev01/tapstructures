@@ -122,8 +122,9 @@ const Header: React.FC = () => {
       <NavItems>
         <NavLink to="/" $isActive={isActivePath('/')}>Home</NavLink>
         <NavLink to="/about" $isActive={isActivePath('/about')}>About</NavLink>
-        <NavLink to="/insights" $isActive={isActivePath('/insights')}>Insights</NavLink>
+        <NavLink to="/services" $isActive={isActivePath('/services')}>Services</NavLink>
         <NavLink to="/portfolio" $isActive={isActivePath('/portfolio')}>Portfolio</NavLink>
+        <NavLink to="/insights" $isActive={isActivePath('/insights')}>Insights</NavLink>
         <NavLink to="/contact" $isActive={isActivePath('/contact')}>Contact</NavLink>
       </NavItems>
       
@@ -142,6 +143,8 @@ const Header: React.FC = () => {
           <MobileNavItems>
             <NavLink to="/" $isActive={isActivePath('/')} onClick={toggleMobileMenu}>Home</NavLink>
             <NavLink to="/about" $isActive={isActivePath('/about')} onClick={toggleMobileMenu}>About</NavLink>
+            <NavLink to="/services" $isActive={isActivePath('/services')} onClick={toggleMobileMenu}>Services</NavLink>
+            <NavLink to="/portfolio" $isActive={isActivePath('/portfolio')} onClick={toggleMobileMenu}>Portfolio</NavLink>
             <NavLink to="/insights" $isActive={isActivePath('/insights')} onClick={toggleMobileMenu}>Insights</NavLink>
             <NavLink to="/contact" $isActive={isActivePath('/contact')} onClick={toggleMobileMenu}>Contact</NavLink>
           </MobileNavItems>

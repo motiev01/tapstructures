@@ -7,6 +7,7 @@ import ContactPage from './pages/ContactPage';
 import InsightsPage from './pages/InsightsPage';
 import BlogPostPage from './pages/BlogPostPage';
 import PortfolioPage from './pages/PortfolioPage';
+import ServicesPage from './pages/ServicesPage';
 
 /**
  * The App component serves as the entry point for the application.
@@ -20,6 +21,7 @@ import PortfolioPage from './pages/PortfolioPage';
  * - Insights page for the blog listing
  * - Individual blog post pages with dynamic routing based on post ID
  * - Portfolio page showcasing personal work
+ * - Services page showcasing available services
  */
 const App: React.FC = () => {
   return (
@@ -32,6 +34,7 @@ const App: React.FC = () => {
           <Route path="/insights" element={<InsightsPage />} />
           <Route path="/insights/:id" element={<BlogPostPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/services" element={<ServicesPage />} />
         </Routes>
       </Layout>
     </Router>

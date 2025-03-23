@@ -189,7 +189,7 @@ const AboutPage: React.FC = () => {
     { name: 'Artificial Intelligence literacy and experience',
       icon: '💻',
       proficiency: 80, // Percentage of proficiency
-      description: 'Machine learning, AI agents, RAG architectures, and deep learning frameworks.'
+      description: 'Machine & RL learning, AI agents & frameworks, RAG architectures, MCP protocols, Midjourney, SORA, Claude, Grok, ChatGPT, Gemini, and more..'
     },
     { name: 'Field Expertise',
       icon: '🏗️',
