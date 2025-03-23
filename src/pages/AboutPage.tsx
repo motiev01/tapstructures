@@ -4,13 +4,10 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Container from '../components/common/Container';
 import Card from '../components/common/Card';
+import bulldozerImage from '../assets/images/Bulldozer-Tap-01.png';
 
 const AboutSection = styled.section`
   padding: 5rem 0;
-`;
-
-const BioSection = styled.div`
-  margin-bottom: 4rem;
 `;
 
 const PageHeading = styled.h1`
@@ -19,16 +16,52 @@ const PageHeading = styled.h1`
   color: ${props => props.theme.colors.primary};
 `;
 
-const BioText = styled.p`
-  font-size: 1.2rem;
-  max-width: 800px;
-  margin-bottom: 2rem;
-  line-height: 1.8;
+const BioContainer = styled.div`
+  position: relative;
+  margin: -5rem -2rem 0 -2rem;
+  height: 85vh;
+  background-color: #E6F3F0;
+  background-image: url(${bulldozerImage});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+
+  @media (max-width: 768px) {
+    margin: -3rem -1rem 0 -1rem;
+    height: 75vh;
+  }
 `;
 
-const SkillsSection = styled.section`
-  padding: 4rem 0;
-  background-color: ${props => props.theme.colors.backgroundAlt};
+const BioContent = styled.div`
+  position: relative;
+  z-index: 2;
+  padding: 0.75rem 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  width: fit-content;
+  background-color: #E6F3F0;
+  padding-bottom: 1rem;
+  margin-bottom: 0;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 0.75rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0;
+  }
+`;
+
+const BioText = styled.p`
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: ${props => props.theme.colors.primary};
+  font-weight: 500;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const SkillsGrid = styled.div`
@@ -37,7 +70,6 @@ const SkillsGrid = styled.div`
   gap: 1.5rem;
   margin-top: 2rem;
 `;
-
 
 const SkillName = styled.span`
   font-weight: 500;
@@ -199,13 +231,13 @@ const AboutPage: React.FC = () => {
     { name: 'Project Management',
       icon: '🏗️',
       proficiency: 80,
-      description: 'Scope, budgeting, contracts, RFIs, submittals, punch lists, and building turnover.' 
+      description: 'Scopes, budgeting, contracts, Change Orders, RFIs, submittals, punch lists, and building turnover.' 
     },
     { name: 'Markup, Report, and Status Generation',
       icon: '🏗️',
       proficiency: 95,
       description: 'Generating markups and reports, create visual status updates, and track material/equipment deliveries.' },
-    { name: 'ADA/FHA/TAS/ANSI Compliance',
+    { name: 'ADA, FHA, TAS, ANSI Compliance',
       icon: '📘',
       proficiency: 75,
       description: 'Ensuring compliance with ADA, FHA, TAS, and ANSI standards.' },
@@ -248,77 +280,70 @@ const AboutPage: React.FC = () => {
             animate="visible"
             variants={staggerContainer}
           >
-            <BioSection>
+            <motion.div variants={fadeIn}>
               <PageHeading>About Me</PageHeading>
-              <BioText>
-                Hi, I'm Matt Tap! A builder with a passion for solving complex problems with innovative solutions. 
-                I hope to inspire a new age of construction that employs more effective practices while maintaining proven results, drawing on my experience
-                in both field engineering and development.
-              </BioText>
-              <BioText>
-                With a vision to build a business that transforms industries, I'm focused on creating solutions 
-                that weld optimized tools to the foundation of Industry Standard. My background in construction and 
-                computer science gives me a unique perspective on large scale architectures and how to approach complex projects with efficiency and creativity.
-              </BioText>
-            </BioSection>
+              <BioContainer>
+                <BioContent>
+                  <BioText>
+                    Hi, I'm Matt Tap! A builder wielding a passion for solving complex problems with out-of-the-box solutions.
+                    I'm currently working towards constructing a wider bridge between tradition and technology.
+                    I envision new practices mounted high on the shoulders of giants and empowered by almost unimaginable technological advancements. 
+                    I'm looking to send shockwaves through the industry, and for like-minded trailblazers to join me on this journey. Lets shape the future together.
+                  </BioText>
+                </BioContent>
+              </BioContainer>
+            </motion.div>
+
+            <motion.div variants={fadeIn}>
+              <SectionHeading>Skills & Expertise</SectionHeading>
+              <SkillsGrid>
+                {skills.map((skill, index) => (
+                  <motion.div key={index} variants={fadeIn}>
+                    <EnhancedSkillCard>
+                      <SkillHeader>
+                        <SkillIconContainer>{skill.icon}</SkillIconContainer>
+                        <SkillDetails>
+                          <SkillNameAndLevel>
+                            <SkillName>{skill.name}</SkillName>
+                            <SkillLevel>{skill.proficiency}%</SkillLevel>
+                          </SkillNameAndLevel>
+                          <ProgressBarContainer>
+                            <ProgressBar $progress={skill.proficiency} />
+                          </ProgressBarContainer>
+                          <SkillDescription>{skill.description}</SkillDescription>
+                        </SkillDetails>
+                      </SkillHeader>
+                    </EnhancedSkillCard>
+                  </motion.div>
+                ))}
+              </SkillsGrid>
+            </motion.div>
           </motion.div>
         </Container>
       </AboutSection>
 
-<SkillsSection>
-  <Container>
-    <SectionHeading>Skills & Technologies</SectionHeading>
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={staggerContainer}
-    >
-      <SkillsGrid>
-        {skills.map((skill, index) => (
-          <motion.div key={index} variants={fadeIn}>
-            <EnhancedSkillCard>
-              <SkillHeader>
-                <SkillIconContainer>{skill.icon}</SkillIconContainer>
-                <SkillDetails>
-                  <SkillNameAndLevel>
-                    <SkillName>{skill.name}</SkillName>
-                    <SkillLevel>{skill.proficiency}%</SkillLevel>
-                  </SkillNameAndLevel>
-                  <ProgressBarContainer>
-                    <ProgressBar $progress={skill.proficiency} />
-                  </ProgressBarContainer>
-                </SkillDetails>
-              </SkillHeader>
-              <SkillDescription>{skill.description}</SkillDescription>
-            </EnhancedSkillCard>
-          </motion.div>
-        ))}
-      </SkillsGrid>
-    </motion.div>
-  </Container>
-</SkillsSection>
-
       <ProjectsSection>
         <Container>
-          <SectionHeading>Project Highlights</SectionHeading>
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: true }}
             variants={staggerContainer}
           >
-            <ProjectsGrid>
-              {projects.map((project, index) => (
-                <motion.div key={index} variants={fadeIn}>
-                  <ProjectCard elevated>
-                    <ProjectTitle>{project.title}</ProjectTitle>
-                    <ProjectDescription>{project.description}</ProjectDescription>
-                    <ProjectRole>Role: {project.role}</ProjectRole>
-                  </ProjectCard>
-                </motion.div>
-              ))}
-            </ProjectsGrid>
+            <motion.div variants={fadeIn}>
+              <SectionHeading>Notable Projects</SectionHeading>
+              <ProjectsGrid>
+                {projects.map((project, index) => (
+                  <motion.div key={index} variants={fadeIn}>
+                    <ProjectCard>
+                      <ProjectTitle>{project.title}</ProjectTitle>
+                      <ProjectDescription>{project.description}</ProjectDescription>
+                      <ProjectRole>{project.role}</ProjectRole>
+                    </ProjectCard>
+                  </motion.div>
+                ))}
+              </ProjectsGrid>
+            </motion.div>
           </motion.div>
         </Container>
       </ProjectsSection>
