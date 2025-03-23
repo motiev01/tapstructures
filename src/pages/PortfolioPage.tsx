@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/PortfolioPage.css';
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 // Define the image type interface
 interface PortfolioImage {
@@ -8,9 +10,53 @@ interface PortfolioImage {
   alt: string;
 }
 
+const BackToTopButton = styled(motion.button)<{ $isVisible: boolean }>`
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: ${props => props.theme.colors.primary};
+  color: white;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: ${props => props.$isVisible ? 'flex' : 'none'};
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: ${props => props.theme.colors.primaryDark};
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    bottom: 1rem;
+    right: 1rem;
+  }
+`;
+
 // This component will be placed in the /pages directory
 const PortfolioPage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<PortfolioImage | null>(null);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Define portfolio images using require()
   const portfolioImages: PortfolioImage[] = [
@@ -97,6 +143,15 @@ const PortfolioPage: React.FC = () => {
           </div>
         </div>
       )}
+
+      <BackToTopButton
+        $isVisible={showBackToTop}
+        onClick={scrollToTop}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        ↑
+      </BackToTopButton>
     </div>
   );
 };
