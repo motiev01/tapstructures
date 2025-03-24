@@ -20,7 +20,7 @@ const BioContainer = styled.div`
   position: relative;
   margin: -5rem -2rem 0 -2rem;
   height: 85vh;
-  background-color: #E6F3F0;
+  background-color: #1A1A1A;
   background-image: url(${bulldozerImage});
   background-size: cover;
   background-position: center;
@@ -41,7 +41,7 @@ const BioContent = styled.div`
   max-width: 800px;
   margin: 0 auto;
   width: fit-content;
-  background-color: #A0D6B4;
+  background-color: #1A1A1A;
   padding-bottom: 1rem;
   margin-bottom: 0;
 
@@ -329,16 +329,16 @@ const AboutPage = () => {
               <PageHeading>About Me</PageHeading>
               <BioContainer>
                 <BioContent>
-                <BioText>
-                Hi, I'm Matt Tap! A builder with a passion for solving complex problems with innovative solutions. 
-                I hope to inspire a new age of construction that employs more effective practices while maintaining proven results, drawing on my experience
-                in both field engineering and development.
-              </BioText>
-              <BioText>
-                With a vision to build a business that transforms industries, I'm focused on creating solutions 
-                that weld optimized tools to the foundation of Industry Standard. My background in construction and 
-                computer science gives me a unique perspective on large scale architectures and how to approach complex projects with efficiency and creativity.
-              </BioText>
+                  <BioText>
+                    Hi, I'm Matt Tap! A builder with a passion for solving complex problems with innovative solutions. 
+                    I hope to inspire a new age of construction that employs more effective practices while maintaining proven results, drawing on my experience
+                    in both field engineering and development.
+                  </BioText>
+                  <BioText>
+                    With a vision to build a business that transforms industries, I'm focused on creating solutions 
+                    that weld optimized tools to the foundation of Industry Standard. My background in construction and 
+                    computer science gives me a unique perspective on large scale architectures and how to approach complex projects with efficiency and creativity.
+                  </BioText>
                 </BioContent>
               </BioContainer>
             </motion.div>

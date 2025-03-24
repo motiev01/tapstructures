@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Container from '../components/common/Container';
 import Button from '../components/common/Button';
 import Card from '../components/common/Card';
-import excavatorImage from '../assets/images/Excavator-Tap-12.png';
+import backgroundVideo from '../assets/videos/LandingPage-Excavator-01.mp4';
 
 const HeroSection = styled.section`
   padding: 6rem 0;
@@ -88,6 +88,16 @@ const CTASection = styled.section`
   text-align: center;
 `;
 
+const VideoBackground = styled.video`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+`;
+
 const ImageBackgroundSection = styled.section`
   position: relative;
   height: 80vh;
@@ -103,12 +113,8 @@ const ImageBackgroundSection = styled.section`
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url(${excavatorImage});
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    filter: brightness(0.7);
-    z-index: 1;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
   }
 `;
 
@@ -263,6 +269,15 @@ const LandingPage: React.FC = () => {
       </HeroSection>
 
       <ImageBackgroundSection>
+        <VideoBackground
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src={backgroundVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </VideoBackground>
         <Container>
           <ImageContent>
             <motion.div

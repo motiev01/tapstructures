@@ -3,16 +3,38 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Container from '../components/common/Container';
+import excavatorImage from '../assets/images/Excavator-Tap-12.png';
+
+const ServicesBackground = styled.div`
+  position: relative;
+  min-height: 100vh;
+  background-image: url(${excavatorImage});
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+`;
+
+const ServicesContent = styled.div`
+  position: relative;
+  z-index: 2;
+`;
 
 const ServicesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   padding: 2rem 0;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
 `;
 
 const ServiceCard = styled(motion.div)<{ isSelected: boolean }>`
@@ -361,28 +383,32 @@ const ServicesPage: React.FC = () => {
   };
 
   return (
-    <Container>
-      <Breadcrumb>
-        <Link to="/">Home</Link>
-        <span>/</span>
-        <span>Services</span>
-      </Breadcrumb>
+    <ServicesBackground>
+      <Container>
+        <ServicesContent>
+          <Breadcrumb>
+            <Link to="/">Home</Link>
+            <span>/</span>
+            <span>Services</span>
+          </Breadcrumb>
 
-      <ServicesGrid>
-        {services.map((service) => (
-          <ServiceCard
-            key={service.id}
-            isSelected={selectedService?.id === service.id}
-            onClick={() => handleServiceClick(service)}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <ServiceIcon>{service.icon}</ServiceIcon>
-            <ServiceTitle>{service.title}</ServiceTitle>
-            <ServiceDescription>{service.shortDescription}</ServiceDescription>
-          </ServiceCard>
-        ))}
-      </ServicesGrid>
+          <ServicesGrid>
+            {services.map((service) => (
+              <ServiceCard
+                key={service.id}
+                isSelected={selectedService?.id === service.id}
+                onClick={() => handleServiceClick(service)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <ServiceIcon>{service.icon}</ServiceIcon>
+                <ServiceTitle>{service.title}</ServiceTitle>
+                <ServiceDescription>{service.shortDescription}</ServiceDescription>
+              </ServiceCard>
+            ))}
+          </ServicesGrid>
+        </ServicesContent>
+      </Container>
 
       <AnimatePresence>
         {selectedService && (
@@ -428,7 +454,7 @@ const ServicesPage: React.FC = () => {
       >
         ↑
       </BackToTopButton>
-    </Container>
+    </ServicesBackground>
   );
 };
 
