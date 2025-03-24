@@ -32,6 +32,10 @@ const BioContainer = styled.div`
   overflow: hidden;
   margin: 2rem 0;
   
+  @media (max-width: 768px) {
+    background-attachment: scroll;
+  }
+  
   &::before {
     content: '';
     position: absolute;
