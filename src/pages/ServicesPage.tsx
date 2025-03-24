@@ -332,7 +332,7 @@ const services = [
     }
   },
   {
-    id: 3,
+    id: 6,
     icon: '📊',
     title: 'Data Analytics',
     shortDescription: 'Data-driven insights for construction operations',
@@ -352,6 +352,30 @@ const services = [
         'Better cost control',
         'Enhanced project forecasting',
         'Competitive advantage'
+      ]
+    }
+  },
+  {
+    id: 7,
+    icon: '🔒',
+    title: 'Safety & Compliance',
+    shortDescription: 'Comprehensive safety and regulatory compliance solutions',
+    fullDescription: {
+      overview: 'Ensure your construction projects meet all safety standards and regulatory requirements with our comprehensive compliance solutions.',
+      features: [
+        'OSHA compliance monitoring',
+        'Safety protocol development',
+        'Regulatory documentation',
+        'Training and certification programs',
+        'Risk assessment and mitigation',
+        'Compliance reporting and tracking'
+      ],
+      benefits: [
+        'Reduced safety incidents',
+        'Regulatory compliance assurance',
+        'Lower insurance premiums',
+        'Enhanced workplace safety',
+        'Improved project reputation'
       ]
     }
   }
