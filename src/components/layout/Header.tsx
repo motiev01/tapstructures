@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import tapLogo from '../../assets/images/TAP-Logo.webp';
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -17,13 +18,18 @@ const HeaderContainer = styled.header`
 `;
 
 const Logo = styled(Link)`
-  font-family: ${props => props.theme.fonts.heading};
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: ${props => props.theme.colors.primary};
-  text-decoration: none;
   display: flex;
   align-items: center;
+  text-decoration: none;
+  
+  img {
+    height: 40px;
+    width: auto;
+    
+    @media (max-width: 768px) {
+      height: 32px;
+    }
+  }
 `;
 
 const NavItems = styled.nav`
@@ -117,7 +123,9 @@ const Header: React.FC = () => {
 
   return (
     <HeaderContainer>
-      <Logo to="/">TapStructures</Logo>
+      <Logo to="/">
+        <img src={tapLogo} alt="TAP Structures Logo" />
+      </Logo>
       
       <NavItems>
         <NavLink to="/" $isActive={isActivePath('/')}>Home</NavLink>
