@@ -18,40 +18,46 @@ const PageHeading = styled.h1`
 
 const BioContainer = styled.div`
   position: relative;
-  margin: -5rem -2rem 0 -2rem;
-  height: 85vh;
-  background-color: #1A1A1A;
+  width: 100%;
+  height: 80vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-image: url(${bulldozerImage});
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  display: flex;
-  align-items: flex-end;
-
-  @media (max-width: 768px) {
-    margin: -3rem -1rem 0 -1rem;
-    height: 75vh;
-    background-size: cover;
-    background-position: center;
+  background-attachment: fixed;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin: 2rem 0;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
   }
 `;
 
 const BioContent = styled.div`
   position: relative;
   z-index: 2;
-  padding: 0.75rem 1rem;
   max-width: 800px;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 1rem;
+  text-align: center;
   margin: 0 auto;
-  width: fit-content;
-  background-color: #1A1A1A;
-  padding-bottom: 1rem;
-  margin-bottom: 0;
-
+  width: 90%;
+  
   @media (max-width: 768px) {
-    padding: 0.5rem 0.75rem;
-    padding-bottom: 0.75rem;
-    margin-bottom: 0;
+    width: 95%;
+    padding: 1.5rem;
   }
 `;
 
