@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Container from '../components/common/Container';
-import excavatorImage from '../assets/images/Excavator-Tap-12.png';
+import excavatorImage from '../assets/images/Excavator-Tap-12.webp';
 
-const ServicesBackground = styled.div`
+const ServicesBackground = styled.div<{ $imageUrl: string }>`
   position: relative;
   min-height: 100vh;
-  background-image: url(${excavatorImage});
+  background-image: url(${props => props.$imageUrl});
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -22,6 +22,11 @@ const ServicesBackground = styled.div`
     bottom: 0;
     background: rgba(0, 0, 0, 0.4);
     z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    background-size: cover;
+    background-position: center;
   }
 `;
 
@@ -407,7 +412,7 @@ const ServicesPage: React.FC = () => {
   };
 
   return (
-    <ServicesBackground>
+    <ServicesBackground $imageUrl={excavatorImage}>
       <Container>
         <ServicesContent>
           <Breadcrumb>

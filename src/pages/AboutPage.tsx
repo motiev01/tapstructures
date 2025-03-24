@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Container from '../components/common/Container';
 import Card from '../components/common/Card';
-import bulldozerImage from '../assets/images/Bulldozer-Tap-01.png';
+import bulldozerImage from '../assets/images/Bulldozer-Tap-01.webp';
 
 const AboutSection = styled.section`
   padding: 5rem 0;
@@ -25,12 +25,15 @@ const BioContainer = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: scroll;
   display: flex;
   align-items: flex-end;
 
   @media (max-width: 768px) {
     margin: -3rem -1rem 0 -1rem;
     height: 75vh;
+    background-size: cover;
+    background-position: center;
   }
 `;
 
