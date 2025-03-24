@@ -3,18 +3,18 @@
   "name": "TapStructures - Construction & Technology Solutions",
   "icons": [
     {
-      "src": "TAP-Logo.png",
+      "src": "TAP-Logo.webp",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/png"
+      "type": "image/webp"
     },
     {
-      "src": "TAP-Logo.png",
-      "type": "image/png",
+      "src": "TAP-Logo.webp",
+      "type": "image/webp",
       "sizes": "192x192"
     },
     {
-      "src": "TAP-Logo.png",
-      "type": "image/png",
+      "src": "TAP-Logo.webp",
+      "type": "image/webp",
       "sizes": "512x512"
     }
   ],
