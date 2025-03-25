@@ -139,6 +139,29 @@ interface FormData {
   honeypot?: string; // For bot detection
 }
 
+const LoadingSpinner = styled.span`
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: 0.5rem;
+  border: 0.2em solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
+const SubmitButton = styled(Button)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const ContactPage: React.FC = () => {
   // State to track form submission progress and results
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -164,10 +187,16 @@ const ContactPage: React.FC = () => {
     setSubmitError(null);
     
     try {
-      const endpoint = process.env.REACT_APP_FORMSPREE_ENDPOINT;
-      if (!endpoint) {
-        throw new Error('Formspree endpoint not configured');
-      }
+      const endpoint = 'https://formspree.io/f/mdkaqwdo';
+      console.log('Attempting to send to Formspree:', {
+        url: endpoint,
+        data: {
+          name: data.name,
+          email: data.email,
+          subject: data.subject || 'New Contact from Website',
+          message: data.message
+        }
+      });
 
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -183,14 +212,16 @@ const ContactPage: React.FC = () => {
         }),
       });
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      console.log('Formspree response:', {
+        status: response.status,
+        ok: response.ok
+      });
       
       const result = await response.json();
-      
-      if (result.error) {
-        throw new Error(result.error);
+      console.log('Formspree result:', result);
+
+      if (!response.ok || result.error) {
+        throw new Error(result.error || `HTTP error! status: ${response.status}`);
       }
       
       setSubmitSuccess(true);
@@ -300,7 +331,14 @@ const ContactPage: React.FC = () => {
                 large
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                {isSubmitting ? (
+                  <>
+                    Sending
+                    <LoadingSpinner aria-hidden="true" />
+                  </>
+                ) : (
+                  'Send Message'
+                )}
               </Button>
             </ContactForm>
           </FormColumn>
