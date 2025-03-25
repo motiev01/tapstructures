@@ -35,6 +35,9 @@ const BioContainer = styled.div`
   @media (hover: none) and (pointer: coarse), (max-width: 768px) {
     background-attachment: scroll;
     -webkit-overflow-scrolling: touch;
+    height: auto;
+    min-height: auto;
+    padding: 3rem 0;
   }
   
   &::before {
