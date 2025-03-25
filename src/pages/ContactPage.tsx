@@ -164,8 +164,12 @@ const ContactPage: React.FC = () => {
     setSubmitError(null);
     
     try {
-      // Direct implementation with hard-coded Formspree endpoint (temporary for debugging)
-      const response = await fetch(process.env.REACT_APP_FORMSPREE_ENDPOINT || '', {
+      const endpoint = process.env.REACT_APP_FORMSPREE_ENDPOINT;
+      if (!endpoint) {
+        throw new Error('Formspree endpoint not configured');
+      }
+
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -179,10 +183,14 @@ const ContactPage: React.FC = () => {
         }),
       });
       
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const result = await response.json();
       
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to send message');
+      if (result.error) {
+        throw new Error(result.error);
       }
       
       setSubmitSuccess(true);
@@ -194,7 +202,11 @@ const ContactPage: React.FC = () => {
       }, 5000);
     } catch (error) {
       console.error('Error submitting form:', error);
-      setSubmitError('There was an error sending your message. Please try again later.');
+      setSubmitError(
+        error instanceof Error 
+          ? error.message 
+          : 'There was an error sending your message. Please try again later.'
+      );
     } finally {
       setIsSubmitting(false);
     }
