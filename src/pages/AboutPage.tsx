@@ -38,29 +38,16 @@ const PageHeading = styled.h1`
   color: ${props => props.theme.colors.primary};
 `;
 
-const BioContainer = styled.div`
+const BioContainer = styled.div<{ $imageUrl: string }>`
   position: relative;
-  width: 100%;
-  height: 80vh;
-  min-height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url(${bulldozerImage});
+  min-height: 100vh;
+  background-image: url(${props => props.$imageUrl});
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  border-radius: 1rem;
-  overflow: hidden;
-  margin: 2rem 0;
-  
-  @media (hover: none) and (pointer: coarse), (max-width: 768px) {
-    background-attachment: scroll;
-    -webkit-overflow-scrolling: touch;
-    height: auto;
-    min-height: auto;
-    padding: 3rem 0;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
   &::before {
     content: '';
@@ -71,6 +58,11 @@ const BioContainer = styled.div`
     bottom: 0;
     background: rgba(0, 0, 0, 0.4);
     z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    background-size: cover;
+    background-position: center;
   }
 `;
 
@@ -84,6 +76,9 @@ const BioContent = styled.div`
   text-align: center;
   margin: 0 auto;
   width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   
   @media (max-width: 768px) {
     width: 95%;
@@ -316,7 +311,7 @@ const AboutPage: React.FC = () => {
           >
             <motion.div variants={animations.fadeIn}>
               <PageHeading>About Me</PageHeading>
-              <BioContainer>
+              <BioContainer $imageUrl={bulldozerImage}>
                 <BioContent>
                   <BioText>
                     Hi, I'm Matt Tap! A builder with a passion for solving complex problems with innovative solutions. 
