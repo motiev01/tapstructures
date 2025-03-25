@@ -66,7 +66,7 @@ const Footer: React.FC = () => {
         <FooterSection>
           <FooterHeading>TapStructures</FooterHeading>
           <FooterText>
-            Merging innovation and expertise to pioneer a new path. 
+            Merging innovation and expertise to pioneer a new path forward. 
             Construction and development solutions that inspire.
           </FooterText>
         </FooterSection>

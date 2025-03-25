@@ -88,6 +88,20 @@ const CTASection = styled.section`
   text-align: center;
 `;
 
+const MissionSection = styled.section`
+  padding: 5rem 0;
+  background-color: ${props => props.theme.colors.background};
+  text-align: center;
+`;
+
+const MissionText = styled(motion.p)`
+  font-size: 1.25rem;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.8;
+  color: ${props => props.theme.colors.textLight};
+`;
+
 const VideoBackground = styled.video`
   width: 100%;
   height: 100%;
@@ -332,6 +346,24 @@ const LandingPage: React.FC = () => {
           </motion.div>
         </Container>
       </FeaturesSection>
+
+      <MissionSection>
+        <Container>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <motion.div variants={fadeIn}>
+              <SectionHeading>Our Mission</SectionHeading>
+              <MissionText variants={fadeIn}>
+                Everyone is a builder. Monumental architectures scattered throughout the world shaping the story of humanity. Some lost to time, and others relished in our history books. Building is in our bones. At TapStructures, we will change the way humans build. We believe everyone should have ability to design, to create, to construct. We hope to empower all those on their journey to explore what's possible. Crafted by hand, guided by intelligence.
+              </MissionText>
+            </motion.div>
+          </motion.div>
+        </Container>
+      </MissionSection>
 
       <CTASection>
         <Container>

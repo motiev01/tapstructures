@@ -9,9 +9,11 @@ import BlogPostPage from './pages/BlogPostPage';
 import PortfolioPage from './pages/PortfolioPage';
 import ServicesPage from './pages/ServicesPage';
 import EducationPage from './pages/EducationPage';
+import ScrollToTop from './components/ScrollToTop';
 
 /**
  * The App component serves as the entry point for the application.
+ * Updated: Added ScrollToTop component to automatically scroll to top on page navigation
  * It sets up React Router for client-side navigation and wraps all content
  * in the Layout component, which provides consistent structure with header and footer.
  *
@@ -28,6 +30,7 @@ import EducationPage from './pages/EducationPage';
 const App: React.FC = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Layout>
         <Routes>
           <Route path="/" element={<LandingPage />} />

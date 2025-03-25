@@ -248,8 +248,8 @@ const ContactPage: React.FC = () => {
       <Container>
         <PageHeading>Get in Touch</PageHeading>
         <ContactDescription>
-          Have a question or want to discuss a potential project? Fill out the form below
-          and I'll get back to you as soon as possible.
+          Have a vision for the future of your industry? Want to discuss a potential project or venture? Fill out the form below
+          and let's forge a new path forward together.
         </ContactDescription>
         
         <FlexContainer>
