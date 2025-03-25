@@ -2,6 +2,7 @@
 export const theme = {
     colors: {
       primary: '#A78BFA', // Soft purple for headers, buttons, accents
+      primaryDark: '#8B5CF6', // Darker purple variant for hover states
       primaryLight: '#C4B5FD', // Lighter purple variant
       background: '#FFFFFF', // Crisp white background
       backgroundAlt: '#F9FAFB', // Light gray for alternating sections

@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Container from '../components/common/Container';
+import Card from '../components/common/Card';
+import BackToTopButton from '../components/common/BackToTopButton';
 import excavatorImage from '../assets/images/Excavator-Tap-12.webp';
 
 const ServicesBackground = styled.div<{ $imageUrl: string }>`
@@ -42,10 +44,8 @@ const ServicesGrid = styled.div`
   padding: 2rem 0;
 `;
 
-const ServiceCard = styled(motion.div)<{ isSelected: boolean }>`
+const ServiceCard = styled(Card)<{ isSelected: boolean }>`
   aspect-ratio: 1;
-  background-color: ${props => props.theme.colors.backgroundAlt};
-  border-radius: 1rem;
   padding: 2rem;
   cursor: pointer;
   display: flex;
@@ -57,11 +57,6 @@ const ServiceCard = styled(motion.div)<{ isSelected: boolean }>`
   overflow: hidden;
   border: 2px solid ${props => props.isSelected ? props.theme.colors.primary : 'transparent'};
   transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
 `;
 
 const ServiceIcon = styled.div`
@@ -182,36 +177,6 @@ const Breadcrumb = styled.nav`
 
   span {
     color: ${props => props.theme.colors.textLight};
-  }
-`;
-
-const BackToTopButton = styled(motion.button)<{ $isVisible: boolean }>`
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background-color: ${props => props.theme.colors.primary};
-  color: white;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: ${props => props.$isVisible ? 'flex' : 'none'};
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: ${props => props.theme.colors.primaryDark};
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 768px) {
-    bottom: 1rem;
-    right: 1rem;
   }
 `;
 
@@ -423,17 +388,20 @@ const ServicesPage: React.FC = () => {
 
           <ServicesGrid>
             {services.map((service) => (
-              <ServiceCard
+              <motion.div
                 key={service.id}
-                isSelected={selectedService?.id === service.id}
-                onClick={() => handleServiceClick(service)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <ServiceIcon>{service.icon}</ServiceIcon>
-                <ServiceTitle>{service.title}</ServiceTitle>
-                <ServiceDescription>{service.shortDescription}</ServiceDescription>
-              </ServiceCard>
+                <ServiceCard
+                  isSelected={selectedService?.id === service.id}
+                  onClick={() => handleServiceClick(service)}
+                >
+                  <ServiceIcon>{service.icon}</ServiceIcon>
+                  <ServiceTitle>{service.title}</ServiceTitle>
+                  <ServiceDescription>{service.shortDescription}</ServiceDescription>
+                </ServiceCard>
+              </motion.div>
             ))}
           </ServicesGrid>
         </ServicesContent>
@@ -476,13 +444,9 @@ const ServicesPage: React.FC = () => {
       </AnimatePresence>
 
       <BackToTopButton
-        $isVisible={showBackToTop}
+        isVisible={showBackToTop}
         onClick={scrollToTop}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        ↑
-      </BackToTopButton>
+      />
     </ServicesBackground>
   );
 };

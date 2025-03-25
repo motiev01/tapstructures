@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Container from '../components/common/Container';
 import Card from '../components/common/Card';
+import BackToTopButton from '../components/common/BackToTopButton';
 
 const EducationSection = styled.section`
   padding: 5rem 0;
@@ -34,12 +35,7 @@ const ContentCard = styled(Card)`
   flex-direction: column;
   height: 100%;
   padding: 2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
+  transition: transform 0.3s ease;
 `;
 
 const ContentIcon = styled.div`
@@ -71,36 +67,6 @@ const ContentLink = styled(Link)`
 
   &:hover {
     color: ${props => props.theme.colors.primaryDark};
-  }
-`;
-
-const BackToTopButton = styled(motion.button)<{ $isVisible: boolean }>`
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background-color: ${props => props.theme.colors.primary};
-  color: white;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: ${props => props.$isVisible ? 'flex' : 'none'};
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: ${props => props.theme.colors.primaryDark};
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 768px) {
-    bottom: 1rem;
-    right: 1rem;
   }
 `;
 
@@ -199,7 +165,11 @@ const EducationPage: React.FC = () => {
             <motion.div variants={fadeIn}>
               <TableOfContents>
                 {educationContent.map((content, index) => (
-                  <motion.div key={index} variants={fadeIn}>
+                  <motion.div 
+                    key={index} 
+                    variants={fadeIn}
+                    whileHover={{ scale: 1.02 }}
+                  >
                     <ContentCard>
                       <ContentIcon>{content.icon}</ContentIcon>
                       <ContentTitle>{content.title}</ContentTitle>
@@ -217,13 +187,9 @@ const EducationPage: React.FC = () => {
       </EducationSection>
 
       <BackToTopButton
-        $isVisible={showBackToTop}
+        isVisible={showBackToTop}
         onClick={scrollToTop}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        ↑
-      </BackToTopButton>
+      />
     </>
   );
 };

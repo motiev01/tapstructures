@@ -1,10 +1,32 @@
 // src/pages/AboutPage.tsx
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import Container from '../components/common/Container';
 import Card from '../components/common/Card';
+import BackToTopButton from '../components/common/BackToTopButton';
 import bulldozerImage from '../assets/images/Bulldozer-Tap-01.webp';
+
+// Animation variants
+const animations: { fadeIn: Variants; staggerContainer: Variants } = {
+  fadeIn: {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  },
+  staggerContainer: {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  }
+};
 
 const AboutSection = styled.section`
   padding: 5rem 0;
@@ -137,26 +159,6 @@ const SectionHeading = styled.h2`
   color: ${props => props.theme.colors.primary};
 `;
 
-// Animation variants for staggered fade-in animations
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.6 }
-  }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
 const EnhancedSkillCard = styled(Card)`
   padding: 1.5rem;
   height: 100%;
@@ -222,37 +224,7 @@ const SkillDescription = styled.p`
   margin: 0;
 `;
 
-const BackToTopButton = styled(motion.button)<{ $isVisible: boolean }>`
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background-color: ${props => props.theme.colors.primary};
-  color: white;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: ${props => props.$isVisible ? 'flex' : 'none'};
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: ${props => props.theme.colors.primaryDark};
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 768px) {
-    bottom: 1rem;
-    right: 1rem;
-  }
-`;
-
-const AboutPage = () => {
+const AboutPage: React.FC = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
@@ -340,9 +312,9 @@ const AboutPage = () => {
           <motion.div
             initial="hidden"
             animate="visible"
-            variants={staggerContainer}
+            variants={animations.staggerContainer}
           >
-            <motion.div variants={fadeIn}>
+            <motion.div variants={animations.fadeIn}>
               <PageHeading>About Me</PageHeading>
               <BioContainer>
                 <BioContent>
@@ -360,11 +332,15 @@ const AboutPage = () => {
               </BioContainer>
             </motion.div>
 
-            <motion.div variants={fadeIn}>
+            <motion.div variants={animations.fadeIn}>
               <SectionHeading>Skills & Expertise</SectionHeading>
               <SkillsGrid>
                 {skills.map((skill, index) => (
-                  <motion.div key={index} variants={fadeIn}>
+                  <motion.div 
+                    key={index} 
+                    variants={animations.fadeIn}
+                    whileHover={{ scale: 1.02 }}
+                  >
                     <EnhancedSkillCard>
                       <SkillHeader>
                         <SkillIconContainer>{skill.icon}</SkillIconContainer>
@@ -394,13 +370,17 @@ const AboutPage = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={staggerContainer}
+            variants={animations.staggerContainer}
           >
-            <motion.div variants={fadeIn}>
+            <motion.div variants={animations.fadeIn}>
               <SectionHeading>Notable Projects</SectionHeading>
               <ProjectsGrid>
                 {projects.map((project, index) => (
-                  <motion.div key={index} variants={fadeIn}>
+                  <motion.div 
+                    key={index} 
+                    variants={animations.fadeIn}
+                    whileHover={{ scale: 1.02 }}
+                  >
                     <ProjectCard>
                       <ProjectTitle>{project.title}</ProjectTitle>
                       <ProjectDescription>{project.description}</ProjectDescription>
@@ -415,13 +395,9 @@ const AboutPage = () => {
       </ProjectsSection>
 
       <BackToTopButton
-        $isVisible={showBackToTop}
+        isVisible={showBackToTop}
         onClick={scrollToTop}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        ↑
-      </BackToTopButton>
+      />
     </>
   );
 };

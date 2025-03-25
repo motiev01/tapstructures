@@ -1,33 +1,43 @@
 // src/pages/LandingPage.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Container from '../components/common/Container';
 import Button from '../components/common/Button';
 import Card from '../components/common/Card';
+import BackToTopButton from '../components/common/BackToTopButton';
+import { ThemedProps, MotionHeadingProps, MotionTextProps } from '../types/theme';
 import backgroundVideo from '../assets/videos/LandingPage-Excavator-01.mp4';
+import dumptruckImage from '../assets/images/Dumptruck-Tap-01.webp';
+
+// Props for feature cards
+interface FeatureCard {
+  icon: string;
+  title: string;
+  description: string;
+}
 
 const HeroSection = styled.section`
   padding: 6rem 0;
   text-align: center;
 `;
 
-const HeroHeading = styled(motion.h1)`
+const HeroHeading = styled(motion.h1)<ThemedProps & MotionHeadingProps>`
   font-size: 3rem;
   margin-bottom: 1.5rem;
-  color: ${props => props.theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primary};
 
   @media (max-width: 768px) {
     font-size: 2.5rem;
   }
 `;
 
-const HeroSubheading = styled(motion.p)`
+const HeroSubheading = styled(motion.p)<ThemedProps & MotionTextProps>`
   font-size: 1.25rem;
   max-width: 700px;
   margin: 0 auto 2.5rem;
-  color: ${props => props.theme.colors.textLight};
+  color: ${({ theme }) => theme.colors.textLight};
 `;
 
 const ButtonGroup = styled.div`
@@ -41,16 +51,16 @@ const ButtonGroup = styled.div`
   }
 `;
 
-const FeaturesSection = styled.section`
+const FeaturesSection = styled.section<ThemedProps>`
   padding: 5rem 0;
-  background-color: ${props => props.theme.colors.backgroundAlt};
+  background-color: ${({ theme }) => theme.colors.backgroundAlt};
 `;
 
-const SectionHeading = styled.h2`
+const SectionHeading = styled.h2<ThemedProps>`
   text-align: center;
   margin-bottom: 3rem;
   font-size: 2.25rem;
-  color: ${props => props.theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const FeatureCards = styled.div`
@@ -68,10 +78,10 @@ const FeatureCard = styled(Card)`
   padding: 2rem;
 `;
 
-const FeatureIcon = styled.div`
+const FeatureIcon = styled.div<ThemedProps>`
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
-  color: ${props => props.theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const FeatureTitle = styled.h3`
@@ -79,27 +89,8 @@ const FeatureTitle = styled.h3`
   font-size: 1.5rem;
 `;
 
-const FeatureDescription = styled.p`
-  color: ${props => props.theme.colors.textLight};
-`;
-
-const CTASection = styled.section`
-  padding: 5rem 0;
-  text-align: center;
-`;
-
-const MissionSection = styled.section`
-  padding: 5rem 0;
-  background-color: ${props => props.theme.colors.background};
-  text-align: center;
-`;
-
-const MissionText = styled(motion.p)`
-  font-size: 1.25rem;
-  max-width: 900px;
-  margin: 0 auto;
-  line-height: 1.8;
-  color: ${props => props.theme.colors.textLight};
+const FeatureDescription = styled.p<ThemedProps>`
+  color: ${({ theme }) => theme.colors.textLight};
 `;
 
 const VideoBackground = styled.video`
@@ -140,7 +131,7 @@ const ImageContent = styled.div`
   width: 100%;
 `;
 
-const ImageHeading = styled(motion.h2)`
+const ImageHeading = styled(motion.h2)<MotionHeadingProps>`
   font-size: 3rem;
   margin-bottom: 1.5rem;
   color: white;
@@ -151,7 +142,7 @@ const ImageHeading = styled(motion.h2)`
   }
 `;
 
-const ImageText = styled(motion.p)`
+const ImageText = styled(motion.p)<MotionTextProps>`
   font-size: 1.25rem;
   max-width: 800px;
   margin: 0 auto 2rem;
@@ -159,8 +150,81 @@ const ImageText = styled(motion.p)`
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 `;
 
+const MissionSection = styled.section<ThemedProps>`
+  padding: 8rem 0;
+  background-color: ${({ theme }) => theme.colors.background};
+  text-align: center;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background-color: ${({ theme }) => theme.colors.primary};
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background-color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+const MissionText = styled(motion.p)<ThemedProps & MotionTextProps>`
+  font-size: 1.4rem;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 2;
+  color: ${({ theme }) => theme.colors.textLight};
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    padding: 0 1rem;
+  }
+`;
+
+const MissionHeading = styled(SectionHeading)`
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+`;
+
+const CTASection = styled(ImageBackgroundSection)``;
+
+const CTABackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(${dumptruckImage});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+`;
+
+const CTAContent = styled(ImageContent)``;
+
 // Animation variants for staggered animations
-const fadeIn = {
+const fadeIn: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
@@ -169,7 +233,7 @@ const fadeIn = {
   }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -179,8 +243,8 @@ const staggerContainer = {
   }
 };
 
-// Add this before your LandingPage component
-const featureCards = [
+// Feature cards data
+const featureCards: FeatureCard[] = [
   {
     icon: '🏗️',
     title: 'Field & Project Management Solutions',
@@ -198,38 +262,9 @@ const featureCards = [
   }
 ];
 
-const BackToTopButton = styled(motion.button)<{ $isVisible: boolean }>`
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background-color: ${props => props.theme.colors.primary};
-  color: white;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: ${props => props.$isVisible ? 'flex' : 'none'};
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: ${props => props.theme.colors.primaryDark};
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 768px) {
-    bottom: 1rem;
-    right: 1rem;
-  }
-`;
-
 const LandingPage: React.FC = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -238,6 +273,12 @@ const LandingPage: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.78; // Sets playback speed
+    }
   }, []);
 
   const scrollToTop = () => {
@@ -261,15 +302,15 @@ const LandingPage: React.FC = () => {
             </HeroSubheading>
             <motion.div variants={fadeIn}>
               <ButtonGroup>
-                <Button 
+                <Button
                   as={Link} 
                   to="/contact" 
-                  primary 
+                  primary
                   large
                 >
                   Get in Touch
                 </Button>
-                <Button 
+                <Button
                   as={Link} 
                   to="/about" 
                   large
@@ -284,6 +325,7 @@ const LandingPage: React.FC = () => {
 
       <ImageBackgroundSection>
         <VideoBackground
+          ref={videoRef}
           autoPlay
           loop
           muted
@@ -307,10 +349,10 @@ const LandingPage: React.FC = () => {
                 Combining cutting-edge technology with industry expertise to revolutionize how we build
               </ImageText>
               <motion.div variants={fadeIn}>
-                <Button 
+                <Button
                   as={Link} 
                   to="/services" 
-                  primary 
+                  primary
                   large
                 >
                   Explore Our Services
@@ -356,9 +398,9 @@ const LandingPage: React.FC = () => {
             variants={staggerContainer}
           >
             <motion.div variants={fadeIn}>
-              <SectionHeading>Our Mission</SectionHeading>
+              <MissionHeading>Our Mission</MissionHeading>
               <MissionText variants={fadeIn}>
-                Everyone is a builder. Monumental architectures scattered throughout the world shaping the story of humanity. Some lost to time, and others relished in our history books. Building is in our bones. At TapStructures, we will change the way humans build. We believe everyone should have ability to design, to create, to construct. We hope to empower all those on their journey to explore what's possible. Crafted by hand, guided by intelligence.
+                Everyone is a builder. Monumental architectures scattered throughout the world shape the story of humanity. Some lost to time and others relished in our history books. Building is in our bones. At TapStructures, we will change the way humans build. We believe everyone should have ability to design, to create, to construct. We hope to empower all those on their journey to explore what's possible. Crafted by hand, guided by intelligence.
               </MissionText>
             </motion.div>
           </motion.div>
@@ -366,44 +408,43 @@ const LandingPage: React.FC = () => {
       </MissionSection>
 
       <CTASection>
+        <CTABackground />
         <Container>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <motion.div variants={fadeIn}>
-              <SectionHeading>Ready to Get Started?</SectionHeading>
-              <HeroSubheading>
-                Hi, I'm Matt Tap! A builder wielding a passion for solving complex problems with out-of-the-box solutions.
-                I'm currently working towards constructing a wider bridge between tradition and technology.
-                I envision new practices mounted high on the shoulders of giants and empowered by almost unimaginable technological advancements. 
-                I'm looking to send shockwaves through the industry, and for like-minded trailblazers to join me on this journey. Lets shape the future together.
-              </HeroSubheading>
+          <ImageContent>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.div variants={fadeIn}>
+                <ImageHeading>Ready to Get Started?</ImageHeading>
+                <ImageText>
+                  Hi, I'm Matt Tap! A builder wielding a passion for solving complex problems with out-of-the-box solutions.
+                  I'm currently working towards constructing a wider bridge between tradition and technology.
+                  I envision new practices mounted high on the shoulders of giants and empowered by almost unimaginable technological advancements. 
+                  I'm looking to send shockwaves through the industry, and for like-minded trailblazers to join me on this journey. Lets shape the future together.
+                </ImageText>
+              </motion.div>
+              <motion.div variants={fadeIn}>
+                <Button
+                  as={Link} 
+                  to="/contact" 
+                  primary
+                  large
+                >
+                  Contact Me
+                </Button>
+              </motion.div>
             </motion.div>
-            <motion.div variants={fadeIn}>
-              <Button 
-                as={Link} 
-                to="/contact" 
-                primary 
-                large
-              >
-                Contact Me
-              </Button>
-            </motion.div>
-          </motion.div>
+          </ImageContent>
         </Container>
       </CTASection>
 
       <BackToTopButton
-        $isVisible={showBackToTop}
+        isVisible={showBackToTop}
         onClick={scrollToTop}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        ↑
-      </BackToTopButton>
+      />
     </>
   );
 };
