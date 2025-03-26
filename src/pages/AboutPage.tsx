@@ -38,16 +38,31 @@ const PageHeading = styled.h1`
   color: ${props => props.theme.colors.primary};
 `;
 
-const BioContainer = styled.div<{ $imageUrl: string }>`
+const BioSection = styled.section`
   position: relative;
-  min-height: 100vh;
-  background-image: url(${props => props.$imageUrl});
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  height: 80vh;
+  min-height: 600px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  overflow: hidden;
+  
+  @media (max-width: 768px) {
+    min-height: 500px;
+    padding: 4rem 0;
+  }
+`;
+
+const BioBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(${bulldozerImage});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
   
   &::before {
     content: '';
@@ -57,18 +72,13 @@ const BioContainer = styled.div<{ $imageUrl: string }>`
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-  }
-
-  @media (max-width: 768px) {
-    background-size: cover;
-    background-position: center;
+    z-index: 2;
   }
 `;
 
 const BioContent = styled.div`
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: 800px;
   padding: 2rem;
   background-color: rgba(0, 0, 0, 0.8);
@@ -76,9 +86,6 @@ const BioContent = styled.div`
   text-align: center;
   margin: 0 auto;
   width: 90%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   
   @media (max-width: 768px) {
     width: 95%;
@@ -304,29 +311,37 @@ const AboutPage: React.FC = () => {
     <>
       <AboutSection>
         <Container>
+          <motion.div variants={animations.fadeIn}>
+            <PageHeading>About Me</PageHeading>
+          </motion.div>
+        </Container>
+      </AboutSection>
+
+      <BioSection>
+        <BioBackground />
+        <Container>
+          <BioContent>
+            <BioText>
+              Hi, I'm Matt Tap! A builder with a passion for solving complex problems with innovative solutions. 
+              I hope to inspire a new age of construction that employs more effective practices while maintaining proven results, drawing on my experience
+              in both field engineering and development.
+            </BioText>
+            <BioText>
+              With a vision to build a business that transforms industries, I'm focused on creating solutions 
+              that weld optimized tools to the foundation of Industry Standard. My background in construction and 
+              computer science gives me a unique perspective on large scale architectures and how to approach complex projects with efficiency and creativity.
+            </BioText>
+          </BioContent>
+        </Container>
+      </BioSection>
+
+      <AboutSection>
+        <Container>
           <motion.div
             initial="hidden"
             animate="visible"
             variants={animations.staggerContainer}
           >
-            <motion.div variants={animations.fadeIn}>
-              <PageHeading>About Me</PageHeading>
-              <BioContainer $imageUrl={bulldozerImage}>
-                <BioContent>
-                  <BioText>
-                    Hi, I'm Matt Tap! A builder with a passion for solving complex problems with innovative solutions. 
-                    I hope to inspire a new age of construction that employs more effective practices while maintaining proven results, drawing on my experience
-                    in both field engineering and development.
-                  </BioText>
-                  <BioText>
-                    With a vision to build a business that transforms industries, I'm focused on creating solutions 
-                    that weld optimized tools to the foundation of Industry Standard. My background in construction and 
-                    computer science gives me a unique perspective on large scale architectures and how to approach complex projects with efficiency and creativity.
-                  </BioText>
-                </BioContent>
-              </BioContainer>
-            </motion.div>
-
             <motion.div variants={animations.fadeIn}>
               <SectionHeading>Skills & Expertise</SectionHeading>
               <SkillsGrid>
