@@ -418,7 +418,7 @@ const LandingPage: React.FC = () => {
             <motion.div variants={fadeIn}>
               <MissionHeading>Our Mission</MissionHeading>
               <MissionText variants={fadeIn}>
-                Everyone is a builder. Monumental architectures scattered throughout the world shape the story of humanity. Some lost to time and others relished in our history books. Building is in our bones. At TapStructures, we will change the way humans build. We believe everyone should have ability to design, to create, to construct. We hope to empower all those on their journey to explore what's possible. Crafted by hand, guided by intelligence.
+                Everyone is a builder. Imaginative architectures scattered throughout the world shape the story of humanity. Some lost to time and others relished in our history books. Building is in our bones. At TapStructures, we will change the way humans build. We believe everyone should have the ability to create, to build, to construct. We hope to empower all those on their journey to explore what's possible. Crafted by hand, guided by intelligence.
               </MissionText>
             </motion.div>
           </motion.div>
@@ -438,10 +438,10 @@ const LandingPage: React.FC = () => {
               <motion.div variants={fadeIn}>
                 <ImageHeading>Ready to Get Started?</ImageHeading>
                 <ImageText>
-                  Hi, I'm Matt Tap! A builder wielding a passion for solving complex problems with out-of-the-box solutions.
+                  Hey, I'm Matt Tap! A builder wielding a passion for tackling complex problems with out-of-the-box solutions.
                   I'm currently working towards constructing a wider bridge between tradition and technology.
-                  I envision new practices mounted high on the shoulders of giants and empowered by almost unimaginable technological advancements. 
-                  I'm looking to send shockwaves through the industry, and for like-minded trailblazers to join me on this journey. Lets shape the future together.
+                  I see new practices taking off, high above the shoulders of giants, fueled by almost unimaginable technological advancements. 
+                  I'm set on sending shockwaves through the industry and rallying like-minded trailblazers to join me on this journey. Lets shape the future--together.
                 </ImageText>
               </motion.div>
               <motion.div variants={fadeIn}>
