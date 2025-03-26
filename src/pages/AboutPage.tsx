@@ -62,6 +62,7 @@ const BioBackground = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   z-index: 1;
   
   &::before {
@@ -73,6 +74,11 @@ const BioBackground = styled.div`
     bottom: 0;
     background: rgba(0, 0, 0, 0.4);
     z-index: 2;
+  }
+
+  @media (max-width: 768px) {
+    background-size: cover;
+    background-position: center;
   }
 `;
 

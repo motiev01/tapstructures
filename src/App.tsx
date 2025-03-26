@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import LandingPage from './pages/LandingPage';
@@ -27,7 +26,7 @@ import ScrollToTop from './components/ScrollToTop';
  * - Services page showcasing available services
  * - Education page for educational resources
  */
-const App: React.FC = () => {
+const App = () => {
   return (
     <Router>
       <ScrollToTop />
