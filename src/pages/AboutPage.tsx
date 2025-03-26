@@ -336,7 +336,12 @@ const AboutPage: React.FC = () => {
               <motion.div variants={animations.fadeIn}>
                 <PageHeading>Ready to Get Started?</PageHeading>
                 <BioText>
-                  Hi, I'm Matt Tap! A builder wielding a passion for solving complex problems with out-of-the-box solutions. I'm currently working towards constructing a wider bridge between tradition and technology. I envision new practices mounted high on the shoulders of giants and empowered by almost unimaginable technological advancements. I'm looking to send shockwaves through the industry, and for like-minded trailblazers to join me on this journey. Let's shape the future together.
+                  Hi, I'm Matt Tap! A builder driven by a passion for solving complex problems with innovative solutions. 
+                  I aim to spark a new era of construction, blending smarter practices with proven results, and redefining the scope of what we can achieve. 
+                  While constantly pushing the boundaries, and building upon my expertise in both site work and software development, I hope to
+                  give power back to the little guy. With a vision to build a business that transforms industries, I'm focused on creating solutions 
+                  that weld optimized tools to the foundation of Industry Standard. My background in construction and 
+                  computer science gives me a unique perspective on large scale architectures and how to approach complex projects with efficiency and creativity.
                 </BioText>
               </motion.div>
             </motion.div>
