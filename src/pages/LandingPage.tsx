@@ -111,6 +111,11 @@ const ImageBackgroundSection = styled.section`
   align-items: center;
   overflow: hidden;
   
+  @media (max-width: 768px) {
+    min-height: 500px;
+    padding: 4rem 0;
+  }
+  
   &::before {
     content: '';
     position: absolute;
@@ -129,6 +134,11 @@ const ImageContent = styled.div`
   color: white;
   text-align: center;
   width: 100%;
+  padding: 0 1rem;
+  
+  @media (max-width: 768px) {
+    padding-bottom: 2rem;
+  }
 `;
 
 const ImageHeading = styled(motion.h2)<MotionHeadingProps>`
@@ -206,7 +216,11 @@ const MissionHeading = styled(SectionHeading)`
   }
 `;
 
-const CTASection = styled(ImageBackgroundSection)``;
+const CTASection = styled(ImageBackgroundSection)`
+  @media (max-width: 768px) {
+    padding-bottom: 4rem;
+  }
+`;
 
 const CTABackground = styled.div`
   position: absolute;
@@ -221,7 +235,11 @@ const CTABackground = styled.div`
   z-index: 1;
 `;
 
-const CTAContent = styled(ImageContent)``;
+const CTAContent = styled(ImageContent)`
+  @media (max-width: 768px) {
+    padding-bottom: 3rem;
+  }
+`;
 
 // Animation variants for staggered animations
 const fadeIn: Variants = {
