@@ -40,15 +40,17 @@ const PageHeading = styled.h1`
 
 const BioSection = styled.section`
   position: relative;
-  height: 80vh;
-  min-height: 600px;
   display: flex;
   align-items: center;
   overflow: hidden;
-  
+  height: 80vh;
+  min-height: 600px;
+  padding: 0;
+
   @media (max-width: 768px) {
-    min-height: 500px;
-    padding: 4rem 0;
+    height: auto;
+    min-height: auto;
+    padding: 6rem 0;
   }
 `;
 
@@ -77,8 +79,7 @@ const BioBackground = styled.div`
   }
 
   @media (max-width: 768px) {
-    background-size: cover;
-    background-position: center;
+    background-attachment: scroll;
   }
 `;
 
@@ -86,16 +87,16 @@ const BioContent = styled.div`
   position: relative;
   z-index: 3;
   max-width: 800px;
-  padding: 2rem;
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 1rem;
   text-align: center;
   margin: 0 auto;
+  padding: 2rem;
   width: 90%;
-  
+
   @media (max-width: 768px) {
-    width: 95%;
     padding: 1.5rem;
+    width: 95%;
   }
 `;
 
@@ -327,16 +328,18 @@ const AboutPage: React.FC = () => {
         <BioBackground />
         <Container>
           <BioContent>
-            <BioText>
-              Hi, I'm Matt Tap! A builder with a passion for solving complex problems with innovative solutions. 
-              I hope to inspire a new age of construction that employs more effective practices while maintaining proven results, drawing on my experience
-              in both field engineering and development.
-            </BioText>
-            <BioText>
-              With a vision to build a business that transforms industries, I'm focused on creating solutions 
-              that weld optimized tools to the foundation of Industry Standard. My background in construction and 
-              computer science gives me a unique perspective on large scale architectures and how to approach complex projects with efficiency and creativity.
-            </BioText>
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={animations.staggerContainer}
+            >
+              <motion.div variants={animations.fadeIn}>
+                <PageHeading>Ready to Get Started?</PageHeading>
+                <BioText>
+                  Hi, I'm Matt Tap! A builder wielding a passion for solving complex problems with out-of-the-box solutions. I'm currently working towards constructing a wider bridge between tradition and technology. I envision new practices mounted high on the shoulders of giants and empowered by almost unimaginable technological advancements. I'm looking to send shockwaves through the industry, and for like-minded trailblazers to join me on this journey. Let's shape the future together.
+                </BioText>
+              </motion.div>
+            </motion.div>
           </BioContent>
         </Container>
       </BioSection>
