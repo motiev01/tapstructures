@@ -12,7 +12,7 @@ import backgroundVideo from '../assets/videos/LandingPage-Excavator-01.mp4';
 import dumptruckImage from '../assets/images/Dumptruck-Tap-01.webp';
 
 // Props for feature cards
-interface FeatureCard {
+interface FeatureCardProps {
   icon: string;
   title: string;
   description: string;
@@ -70,7 +70,7 @@ const FeatureCards = styled.div`
   margin-top: 2rem;
 `;
 
-const FeatureCard = styled(Card)`
+const StyledFeatureCard = styled(Card)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -242,6 +242,11 @@ const CTABackground = styled.div`
   @media (max-width: 768px) {
     position: fixed;
     height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 `;
 
@@ -277,7 +282,7 @@ const staggerContainer: Variants = {
 };
 
 // Feature cards data
-const featureCards: FeatureCard[] = [
+const featureCards: FeatureCardProps[] = [
   {
     icon: '🏗️',
     title: 'Field & Project Management Solutions',
@@ -408,13 +413,13 @@ const LandingPage: React.FC = () => {
             <FeatureCards>
               {featureCards.map((feature, index) => (
                 <motion.div key={index} variants={fadeIn}>
-                  <FeatureCard>
+                  <StyledFeatureCard>
                     <FeatureIcon>{feature.icon}</FeatureIcon>
                     <FeatureTitle>{feature.title}</FeatureTitle>
                     <FeatureDescription>
                       {feature.description}
                     </FeatureDescription>
-                  </FeatureCard>
+                  </StyledFeatureCard>
                 </motion.div>
               ))}
             </FeatureCards>
@@ -443,7 +448,7 @@ const LandingPage: React.FC = () => {
       <CTASection>
         <CTABackground />
         <Container>
-          <ImageContent>
+          <CTAContent>
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -470,7 +475,7 @@ const LandingPage: React.FC = () => {
                 </Button>
               </motion.div>
             </motion.div>
-          </ImageContent>
+          </CTAContent>
         </Container>
       </CTASection>
 
