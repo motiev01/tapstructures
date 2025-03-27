@@ -156,12 +156,6 @@ const LoadingSpinner = styled.span`
   }
 `;
 
-const SubmitButton = styled(Button)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const ContactPage: React.FC = () => {
   // State to track form submission progress and results
   const [isSubmitting, setIsSubmitting] = useState(false);

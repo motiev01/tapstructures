@@ -148,7 +148,8 @@ const ImageHeading = styled(motion.h2)<MotionHeadingProps>`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 
   @media (max-width: 768px) {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -158,6 +159,13 @@ const ImageText = styled(motion.p)<MotionTextProps>`
   margin: 0 auto 2rem;
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const MissionSection = styled.section<ThemedProps>`
@@ -217,10 +225,15 @@ const MissionHeading = styled(SectionHeading)`
 `;
 
 const CTASection = styled(ImageBackgroundSection)`
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  
   @media (max-width: 768px) {
-    padding-bottom: 4rem;
-    min-height: 100vh;
-    height: auto;
+    min-height: auto;
+    padding: 6rem 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -236,25 +249,43 @@ const CTABackground = styled.div`
   background-image: url(${dumptruckImage});
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   z-index: 1;
 
-  @media (max-width: 768px) {
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
+  &::before {
+    content: '';
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-attachment: scroll;
   }
 `;
 
 const CTAContent = styled(ImageContent)`
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  
   @media (max-width: 768px) {
-    padding: 4rem 1rem;
-    position: relative;
-    min-height: 100vh;
+    padding: 2rem 1rem;
+    min-height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
