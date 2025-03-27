@@ -219,6 +219,11 @@ const MissionHeading = styled(SectionHeading)`
 const CTASection = styled(ImageBackgroundSection)`
   @media (max-width: 768px) {
     padding-bottom: 4rem;
+    min-height: 100vh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 `;
 
@@ -233,11 +238,21 @@ const CTABackground = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
+
+  @media (max-width: 768px) {
+    position: fixed;
+    height: 100vh;
+  }
 `;
 
 const CTAContent = styled(ImageContent)`
   @media (max-width: 768px) {
-    padding-bottom: 3rem;
+    padding: 4rem 1rem;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 `;
 
