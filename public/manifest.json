@@ -5,7 +5,8 @@
     {
       "src": "TAP-Logo.ico",
       "sizes": "48x48",
-      "type": "image/x-icon"
+      "type": "image/x-icon",
+      "purpose": "any"
     },
     {
       "src": "TAP-Logo.webp",
