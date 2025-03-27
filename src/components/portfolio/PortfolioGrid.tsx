@@ -14,6 +14,9 @@ const Grid = styled(motion.div)`
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   padding: 2rem;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+  scroll-behavior: smooth;
   
   @media (max-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
