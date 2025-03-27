@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PortfolioAlbum } from '../../types/portfolio';
@@ -36,6 +36,7 @@ const ModalContent = styled(motion.div)`
   max-height: 90vh;
   overflow-y: auto;
   scroll-behavior: smooth;
+  margin: auto;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -161,8 +162,8 @@ const ImageFallback = styled.div`
 
 const ScrollToTopButton = styled(motion.button)`
   position: fixed;
-  bottom: 4rem;
-  right: 4rem;
+  bottom: 2rem;
+  right: 2rem;
   background: #6B46C1;
   color: white;
   border: none;
@@ -217,26 +218,12 @@ const ProjectImageWrapper: React.FC<ProjectImageWrapperProps> = ({ project, onCl
 
 const AlbumModal: React.FC<AlbumModalProps> = ({ album, onClose, isLoading }) => {
   const [selectedImage, setSelectedImage] = useState<{ url: string; title: string; index: number } | null>(null);
-  const [showScrollButton, setShowScrollButton] = useState(false);
   const modalContentRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (modalContentRef.current) {
-        setShowScrollButton(modalContentRef.current.scrollTop > 300);
-      }
-    };
-
+  const scrollToTop = () => {
     const modalContent = modalContentRef.current;
     if (modalContent) {
-      modalContent.addEventListener('scroll', handleScroll);
-      return () => modalContent.removeEventListener('scroll', handleScroll);
-    }
-  }, []);
-
-  const scrollToTop = () => {
-    if (modalContentRef.current) {
-      modalContentRef.current.scrollTo({
+      modalContent.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
@@ -325,20 +312,15 @@ const AlbumModal: React.FC<AlbumModalProps> = ({ album, onClose, isLoading }) =>
         </ModalContent>
       </ModalOverlay>
 
-      <AnimatePresence>
-        {showScrollButton && (
-          <ScrollToTopButton
-            onClick={scrollToTop}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 0.9, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            ↑
-          </ScrollToTopButton>
-        )}
-      </AnimatePresence>
+      <ScrollToTopButton
+        onClick={scrollToTop}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 0.9, y: 0 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        ↑
+      </ScrollToTopButton>
 
       <AnimatePresence>
         {selectedImage && (
