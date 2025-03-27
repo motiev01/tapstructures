@@ -94,8 +94,19 @@ const AlbumCard: React.FC<AlbumCardProps> = ({ album, onClick }) => {
   const [imageError, setImageError] = useState(false);
   const thumbnailSrc = importImage(album.thumbnailUrl);
 
+  // Log thumbnail loading attempt
+  React.useEffect(() => {
+    console.log(`AlbumCard: Loading thumbnail for ${album.title}`, {
+      thumbnailUrl: album.thumbnailUrl,
+      importedSrc: thumbnailSrc
+    });
+  }, [album.thumbnailUrl, thumbnailSrc, album.title]);
+
   const handleImageError = () => {
-    console.error(`Failed to load image: ${album.thumbnailUrl}`);
+    console.error(`Failed to load image for ${album.title}:`, {
+      thumbnailUrl: album.thumbnailUrl,
+      importedSrc: thumbnailSrc
+    });
     setImageError(true);
   };
 
@@ -112,7 +123,11 @@ const AlbumCard: React.FC<AlbumCardProps> = ({ album, onClick }) => {
           onError={handleImageError}
         />
       ) : (
-        <Fallback>{album.title}</Fallback>
+        <Fallback>
+          {album.title}
+          <br />
+          <small>Failed to load thumbnail</small>
+        </Fallback>
       )}
       <Category>{album.category}</Category>
       <Overlay>
