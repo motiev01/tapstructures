@@ -42,162 +42,6 @@ export const portfolioAlbums: PortfolioAlbum[] = [
     ]
   },
   {
-    id: 'commercial',
-    title: 'Commercial Buildings',
-    description: 'State-of-the-art commercial spaces and office buildings.',
-    thumbnailUrl: 'PortfolioCollectionThumbnails/Commercial%20Buildings.png',
-    category: 'Commercial',
-    projects: [
-      {
-        id: 'com-1',
-        title: 'Tech Hub Office Complex',
-        description: 'Modern office space designed for tech companies.',
-        imageUrl: 'PersonalPortfolio/port-img (4).jpg',
-        date: '2023',
-        location: 'Denver, CO',
-        category: 'Commercial',
-        tags: ['Office', 'Tech', 'Modern']
-      },
-      {
-        id: 'com-2',
-        title: 'Retail Center',
-        description: 'Contemporary retail space with modern amenities.',
-        imageUrl: 'PersonalPortfolio/port-img (5).jpg',
-        date: '2023',
-        location: 'Aurora, CO',
-        category: 'Commercial',
-        tags: ['Retail', 'Modern', 'Commercial']
-      },
-      {
-        id: 'com-3',
-        title: 'Corporate Headquarters',
-        description: 'State-of-the-art corporate office building.',
-        imageUrl: 'PersonalPortfolio/port-img (6).jpg',
-        date: '2023',
-        location: 'Boulder, CO',
-        category: 'Commercial',
-        tags: ['Corporate', 'Office', 'Modern']
-      }
-    ]
-  },
-  {
-    id: 'multifamily',
-    title: 'Multifamily Communities',
-    description: 'Modern residential complexes designed for community living.',
-    thumbnailUrl: 'PortfolioCollectionThumbnails/MultifamilyCommunities.png',
-    category: 'Residential',
-    projects: [
-      {
-        id: 'mf-1',
-        title: 'Urban Living Complex',
-        description: 'Contemporary apartment community with shared amenities.',
-        imageUrl: 'PersonalPortfolio/port-img (7).jpg',
-        date: '2023',
-        location: 'Aurora, CO',
-        category: 'Residential',
-        tags: ['Apartments', 'Urban', 'Community']
-      },
-      {
-        id: 'mf-2',
-        title: 'Luxury Condominiums',
-        description: 'High-end condominium development with premium features.',
-        imageUrl: 'PersonalPortfolio/port-img (8).jpg',
-        date: '2023',
-        location: 'Denver, CO',
-        category: 'Residential',
-        tags: ['Luxury', 'Condos', 'Modern']
-      },
-      {
-        id: 'mf-3',
-        title: 'Mixed-Use Development',
-        description: 'Residential community with integrated retail and office spaces.',
-        imageUrl: 'PersonalPortfolio/port-img (9).jpg',
-        date: '2023',
-        location: 'Colorado Springs, CO',
-        category: 'Residential',
-        tags: ['Mixed-Use', 'Community', 'Lifestyle']
-      }
-    ]
-  },
-  {
-    id: 'construction-tech',
-    title: 'Construction Technology',
-    description: 'Modern machinery and equipment. Innovative solutions transforming the construction industry.',
-    thumbnailUrl: 'PortfolioCollectionThumbnails/ConstructionTechnology.png',
-    category: 'Technology',
-    projects: [
-      {
-        id: 'tech-1',
-        title: 'Digital Twin Implementation',
-        description: 'Real-time 3D modeling and monitoring systems for construction sites.',
-        imageUrl: 'PersonalPortfolio/port-img (10).jpg',
-        date: '2023',
-        location: 'Denver, CO',
-        category: 'Technology',
-        tags: ['Digital Twin', 'BIM', 'IoT']
-      },
-      {
-        id: 'tech-2',
-        title: 'AI Safety Monitoring',
-        description: 'Advanced AI systems for construction site safety and risk management.',
-        imageUrl: 'PersonalPortfolio/port-img (11).jpg',
-        date: '2023',
-        location: 'Boulder, CO',
-        category: 'Technology',
-        tags: ['AI', 'Safety', 'Monitoring']
-      },
-      {
-        id: 'tech-3',
-        title: 'Robotics Integration',
-        description: 'Automated construction systems and robotic assistance platforms.',
-        imageUrl: 'PersonalPortfolio/port-img (12).jpg',
-        date: '2023',
-        location: 'Fort Collins, CO',
-        category: 'Technology',
-        tags: ['Robotics', 'Automation', 'Innovation']
-      }
-    ]
-  },
-  {
-    id: 'earthwork',
-    title: 'Earthwork',
-    description: 'Specialized site preparation, excavation, and soil management services.',
-    thumbnailUrl: 'PortfolioCollectionThumbnails/Earthwork.png',
-    category: 'Earthwork',
-    projects: [
-      {
-        id: 'earth-1',
-        title: 'Mass Excavation',
-        description: 'Large-scale site preparation for commercial development.',
-        imageUrl: 'PersonalPortfolio/port-img (13).jpg',
-        date: '2023',
-        location: 'Fort Collins, CO',
-        category: 'Earthwork',
-        tags: ['Excavation', 'Site Prep', 'Commercial']
-      },
-      {
-        id: 'earth-2',
-        title: 'Foundation Systems',
-        description: 'Deep foundation and soil stabilization for high-rise structures.',
-        imageUrl: 'PersonalPortfolio/port-img (14).jpg',
-        date: '2023',
-        location: 'Denver, CO',
-        category: 'Earthwork',
-        tags: ['Foundations', 'Soil', 'Engineering']
-      },
-      {
-        id: 'earth-3',
-        title: 'Site Development',
-        description: 'Complete site preparation including grading and utility infrastructure.',
-        imageUrl: 'PersonalPortfolio/port-img (15).jpg',
-        date: '2023',
-        location: 'Aurora, CO',
-        category: 'Earthwork',
-        tags: ['Grading', 'Utilities', 'Development']
-      }
-    ]
-  },
-  {
     id: 'sustainable',
     title: 'Personal Collection',
     description: 'Some of the favorite photographs I\'ve had the blessing and fortune to take',
@@ -723,6 +567,162 @@ export const portfolioAlbums: PortfolioAlbum[] = [
         location: 'Colorado',
         category: 'Photography',
         tags: ['Essence', 'Urban', 'Development']
+      }
+    ]
+  },
+  {
+    id: 'multifamily',
+    title: 'Multifamily Communities',
+    description: 'Modern residential complexes designed for community living.',
+    thumbnailUrl: 'PortfolioCollectionThumbnails/MultifamilyCommunities.png',
+    category: 'Residential',
+    projects: [
+      {
+        id: 'mf-1',
+        title: 'Urban Living Complex',
+        description: 'Contemporary apartment community with shared amenities.',
+        imageUrl: 'PersonalPortfolio/port-img (7).jpg',
+        date: '2023',
+        location: 'Aurora, CO',
+        category: 'Residential',
+        tags: ['Apartments', 'Urban', 'Community']
+      },
+      {
+        id: 'mf-2',
+        title: 'Luxury Condominiums',
+        description: 'High-end condominium development with premium features.',
+        imageUrl: 'PersonalPortfolio/port-img (8).jpg',
+        date: '2023',
+        location: 'Denver, CO',
+        category: 'Residential',
+        tags: ['Luxury', 'Condos', 'Modern']
+      },
+      {
+        id: 'mf-3',
+        title: 'Mixed-Use Development',
+        description: 'Residential community with integrated retail and office spaces.',
+        imageUrl: 'PersonalPortfolio/port-img (9).jpg',
+        date: '2023',
+        location: 'Colorado Springs, CO',
+        category: 'Residential',
+        tags: ['Mixed-Use', 'Community', 'Lifestyle']
+      }
+    ]
+  },
+  {
+    id: 'construction-tech',
+    title: 'Construction Technology',
+    description: 'Modern machinery and equipment. Innovative solutions transforming the construction industry.',
+    thumbnailUrl: 'PortfolioCollectionThumbnails/ConstructionTechnology.png',
+    category: 'Technology',
+    projects: [
+      {
+        id: 'tech-1',
+        title: 'Digital Twin Implementation',
+        description: 'Real-time 3D modeling and monitoring systems for construction sites.',
+        imageUrl: 'PersonalPortfolio/port-img (10).jpg',
+        date: '2023',
+        location: 'Denver, CO',
+        category: 'Technology',
+        tags: ['Digital Twin', 'BIM', 'IoT']
+      },
+      {
+        id: 'tech-2',
+        title: 'AI Safety Monitoring',
+        description: 'Advanced AI systems for construction site safety and risk management.',
+        imageUrl: 'PersonalPortfolio/port-img (11).jpg',
+        date: '2023',
+        location: 'Boulder, CO',
+        category: 'Technology',
+        tags: ['AI', 'Safety', 'Monitoring']
+      },
+      {
+        id: 'tech-3',
+        title: 'Robotics Integration',
+        description: 'Automated construction systems and robotic assistance platforms.',
+        imageUrl: 'PersonalPortfolio/port-img (12).jpg',
+        date: '2023',
+        location: 'Fort Collins, CO',
+        category: 'Technology',
+        tags: ['Robotics', 'Automation', 'Innovation']
+      }
+    ]
+  },
+  {
+    id: 'earthwork',
+    title: 'Earthwork',
+    description: 'Specialized site preparation, excavation, and soil management services.',
+    thumbnailUrl: 'PortfolioCollectionThumbnails/Earthwork.png',
+    category: 'Earthwork',
+    projects: [
+      {
+        id: 'earth-1',
+        title: 'Mass Excavation',
+        description: 'Large-scale site preparation for commercial development.',
+        imageUrl: 'PersonalPortfolio/port-img (13).jpg',
+        date: '2023',
+        location: 'Fort Collins, CO',
+        category: 'Earthwork',
+        tags: ['Excavation', 'Site Prep', 'Commercial']
+      },
+      {
+        id: 'earth-2',
+        title: 'Foundation Systems',
+        description: 'Deep foundation and soil stabilization for high-rise structures.',
+        imageUrl: 'PersonalPortfolio/port-img (14).jpg',
+        date: '2023',
+        location: 'Denver, CO',
+        category: 'Earthwork',
+        tags: ['Foundations', 'Soil', 'Engineering']
+      },
+      {
+        id: 'earth-3',
+        title: 'Site Development',
+        description: 'Complete site preparation including grading and utility infrastructure.',
+        imageUrl: 'PersonalPortfolio/port-img (15).jpg',
+        date: '2023',
+        location: 'Aurora, CO',
+        category: 'Earthwork',
+        tags: ['Grading', 'Utilities', 'Development']
+      }
+    ]
+  },
+  {
+    id: 'commercial',
+    title: 'Commercial Buildings',
+    description: 'State-of-the-art commercial spaces and office buildings.',
+    thumbnailUrl: 'PortfolioCollectionThumbnails/Commercial%20Buildings.png',
+    category: 'Commercial',
+    projects: [
+      {
+        id: 'com-1',
+        title: 'Tech Hub Office Complex',
+        description: 'Modern office space designed for tech companies.',
+        imageUrl: 'PersonalPortfolio/port-img (4).jpg',
+        date: '2023',
+        location: 'Denver, CO',
+        category: 'Commercial',
+        tags: ['Office', 'Tech', 'Modern']
+      },
+      {
+        id: 'com-2',
+        title: 'Retail Center',
+        description: 'Contemporary retail space with modern amenities.',
+        imageUrl: 'PersonalPortfolio/port-img (5).jpg',
+        date: '2023',
+        location: 'Aurora, CO',
+        category: 'Commercial',
+        tags: ['Retail', 'Modern', 'Commercial']
+      },
+      {
+        id: 'com-3',
+        title: 'Corporate Headquarters',
+        description: 'State-of-the-art corporate office building.',
+        imageUrl: 'PersonalPortfolio/port-img (6).jpg',
+        date: '2023',
+        location: 'Boulder, CO',
+        category: 'Commercial',
+        tags: ['Corporate', 'Office', 'Modern']
       }
     ]
   }
