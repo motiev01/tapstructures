@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PortfolioAlbum } from '../../types/portfolio';
 import ImageModal from './ImageModal';
+import importImage from '../../utils/imageImports';
 
 interface AlbumModalProps {
   album: PortfolioAlbum | null;
@@ -63,13 +64,13 @@ const Header = styled.div`
 
 const Title = styled.h2`
   font-size: 2.5rem;
-  color: #333;
+  color: ${({ theme }) => theme.colors.primary};
   margin-bottom: 1rem;
 `;
 
 const Description = styled.p`
   font-size: 1.1rem;
-  color: #666;
+  color: white;
   max-width: 800px;
   margin: 0 auto;
 `;
@@ -96,47 +97,31 @@ const ProjectCard = styled(motion.div)`
 
 const ProjectImage = styled.img`
   width: 100%;
-  height: 200px;
+  height: 300px;
   object-fit: cover;
 `;
 
 const ProjectInfo = styled.div`
   padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(2px);
+  border-radius: 8px;
+  margin: 0.75rem;
 `;
 
 const ProjectTitle = styled.h3`
   font-size: 1.25rem;
-  color: #333;
-  margin-bottom: 0.5rem;
+  color: ${({ theme }) => theme.colors.primary};
+  margin: 0;
+  text-align: center;
 `;
 
-const ProjectDescription = styled.p`
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 1rem;
-`;
-
-const ProjectMeta = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+const ProjectLocation = styled.p`
   font-size: 0.9rem;
-  color: #888;
-`;
-
-const Tags = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-`;
-
-const Tag = styled.span`
-  background: #f0f0f0;
-  padding: 0.25rem 0.75rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  color: #666;
+  color: white;
+  margin: 0.5rem 0 0;
+  text-align: center;
+  font-style: italic;
 `;
 
 const LoadingSpinner = styled.div`
@@ -147,6 +132,46 @@ const LoadingSpinner = styled.div`
   font-size: 1.2rem;
   color: #666;
 `;
+
+const ImageFallback = styled.div`
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  color: #666;
+  font-size: 1.2rem;
+`;
+
+interface ProjectImageWrapperProps {
+  project: {
+    imageUrl: string;
+    title: string;
+  };
+  onClick: () => void;
+}
+
+const ProjectImageWrapper: React.FC<ProjectImageWrapperProps> = ({ project, onClick }) => {
+  const [imageError, setImageError] = useState(false);
+  const imageSrc = importImage(project.imageUrl);
+
+  const handleImageError = () => {
+    console.error(`Failed to load image: ${project.imageUrl}`);
+    setImageError(true);
+  };
+
+  return imageError ? (
+    <ImageFallback>{project.title}</ImageFallback>
+  ) : (
+    <ProjectImage
+      src={imageSrc || ''}
+      alt={project.title}
+      onError={handleImageError}
+      onClick={onClick}
+    />
+  );
+};
 
 const AlbumModal: React.FC<AlbumModalProps> = ({ album, onClose, isLoading }) => {
   const [selectedImage, setSelectedImage] = useState<{ url: string; title: string } | null>(null);
@@ -185,25 +210,16 @@ const AlbumModal: React.FC<AlbumModalProps> = ({ album, onClose, isLoading }) =>
             {album.projects.map(project => (
               <ProjectCard
                 key={project.id}
-                onClick={() => setSelectedImage({ url: project.imageUrl, title: project.title })}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <ProjectImage src={project.imageUrl} alt={project.title} />
+                <ProjectImageWrapper
+                  project={project}
+                  onClick={() => setSelectedImage({ url: project.imageUrl, title: project.title })}
+                />
                 <ProjectInfo>
                   <ProjectTitle>{project.title}</ProjectTitle>
-                  <ProjectDescription>{project.description}</ProjectDescription>
-                  <ProjectMeta>
-                    <span>{project.date}</span>
-                    <span>{project.location}</span>
-                  </ProjectMeta>
-                  {project.tags && project.tags.length > 0 && (
-                    <Tags>
-                      {project.tags.map(tag => (
-                        <Tag key={tag}>{tag}</Tag>
-                      ))}
-                    </Tags>
-                  )}
+                  {project.location && <ProjectLocation>{project.location}</ProjectLocation>}
                 </ProjectInfo>
               </ProjectCard>
             ))}
@@ -214,7 +230,7 @@ const AlbumModal: React.FC<AlbumModalProps> = ({ album, onClose, isLoading }) =>
       <AnimatePresence>
         {selectedImage && (
           <ImageModal
-            imageUrl={selectedImage.url}
+            imageUrl={importImage(selectedImage.url) || ''}
             title={selectedImage.title}
             onClose={() => setSelectedImage(null)}
           />
