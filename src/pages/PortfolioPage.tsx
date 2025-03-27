@@ -96,7 +96,7 @@ const PortfolioPage: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Explore our diverse collection of projects across different sectors. Each portfolio showcases our commitment to quality, innovation, and excellence in construction and development.
+          Discover a captivating array of collections across a broad range of media. Some portfolios reveal our commitment to pioneering innovation, reliability, and quality in construction and others explore a world of architecture you may have never known. If you'd like to see your project showcased or have suggestions for generative media, send me a message over on the contact page.
         </PageDescription>
 
         <PortfolioGrid

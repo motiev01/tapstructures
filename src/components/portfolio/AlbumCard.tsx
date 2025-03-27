@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { PortfolioAlbum } from '../../types/portfolio';
+import importImage from '../../utils/imageImports';
 
 interface AlbumCardProps {
   album: PortfolioAlbum;
@@ -24,17 +25,22 @@ const Card = styled(motion.div)`
   }
 `;
 
-const Thumbnail = styled.div<{ imageUrl: string }>`
+const Thumbnail = styled.img`
   width: 100%;
   height: 100%;
-  background-image: url(${props => props.imageUrl});
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
   transition: transform 0.3s ease;
   
   ${Card}:hover & {
     transform: scale(1.05);
   }
+`;
+
+const TextContainer = styled.div`
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(2px);
+  border-radius: 8px;
+  padding: 0.75rem;
 `;
 
 const Overlay = styled.div`
@@ -51,12 +57,14 @@ const Title = styled.h3`
   margin: 0;
   font-size: 1.5rem;
   font-weight: 600;
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const Description = styled.p`
   margin: 0.5rem 0 0;
   font-size: 0.9rem;
   opacity: 0.9;
+  color: white;
 `;
 
 const Category = styled.span`
@@ -71,18 +79,47 @@ const Category = styled.span`
   font-weight: 500;
 `;
 
+const Fallback = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  color: ${({ theme }) => theme.colors.textLight};
+  font-size: 1.2rem;
+`;
+
 const AlbumCard: React.FC<AlbumCardProps> = ({ album, onClick }) => {
+  const [imageError, setImageError] = useState(false);
+  const thumbnailSrc = importImage(album.thumbnailUrl);
+
+  const handleImageError = () => {
+    console.error(`Failed to load image: ${album.thumbnailUrl}`);
+    setImageError(true);
+  };
+
   return (
     <Card
       onClick={onClick}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >
-      <Thumbnail imageUrl={album.thumbnailUrl} />
+      {!imageError ? (
+        <Thumbnail 
+          src={thumbnailSrc || ''} 
+          alt={album.title}
+          onError={handleImageError}
+        />
+      ) : (
+        <Fallback>{album.title}</Fallback>
+      )}
       <Category>{album.category}</Category>
       <Overlay>
-        <Title>{album.title}</Title>
-        <Description>{album.description}</Description>
+        <TextContainer>
+          <Title>{album.title}</Title>
+          <Description>{album.description}</Description>
+        </TextContainer>
       </Overlay>
     </Card>
   );
