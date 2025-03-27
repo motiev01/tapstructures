@@ -3,9 +3,13 @@
  */
 const importImage = (imagePath: string) => {
   try {
-    return require(`../assets/images/${imagePath}`);
+    // Try to import the image
+    const image = require(`../assets/images/${imagePath.replace(/%20/g, ' ')}`);
+    console.log(`Successfully loaded image: ${imagePath}`);
+    return image;
   } catch (error) {
     console.error(`Error loading image: ${imagePath}`);
+    console.error('Error details:', error);
     return null;
   }
 };

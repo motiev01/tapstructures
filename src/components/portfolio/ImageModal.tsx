@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -6,6 +6,10 @@ interface ImageModalProps {
   imageUrl: string;
   title: string;
   onClose: () => void;
+  onNext?: () => void;
+  onPrev?: () => void;
+  hasNext?: boolean;
+  hasPrev?: boolean;
 }
 
 const ModalOverlay = styled(motion.div)`
@@ -46,6 +50,37 @@ const Title = styled(motion.h3)`
   font-weight: 500;
 `;
 
+const NavigationButton = styled(motion.button)<{ direction: 'left' | 'right' }>`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  ${props => props.direction === 'left' ? 'left: 1rem;' : 'right: 1rem;'}
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  z-index: 2;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+`;
+
 const CloseButton = styled(motion.button)`
   position: absolute;
   top: -40px;
@@ -66,7 +101,30 @@ const CloseButton = styled(motion.button)`
   }
 `;
 
-const ImageModal: React.FC<ImageModalProps> = ({ imageUrl, title, onClose }) => {
+const ImageModal: React.FC<ImageModalProps> = ({ 
+  imageUrl, 
+  title, 
+  onClose,
+  onNext,
+  onPrev,
+  hasNext = false,
+  hasPrev = false
+}) => {
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight' && onNext && hasNext) {
+        onNext();
+      } else if (e.key === 'ArrowLeft' && onPrev && hasPrev) {
+        onPrev();
+      } else if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [onNext, onPrev, hasNext, hasPrev, onClose]);
+
   return (
     <AnimatePresence>
       <ModalOverlay
@@ -82,6 +140,32 @@ const ImageModal: React.FC<ImageModalProps> = ({ imageUrl, title, onClose }) => 
           onClick={e => e.stopPropagation()}
         >
           <CloseButton onClick={onClose}>&times;</CloseButton>
+          {hasPrev && onPrev && (
+            <NavigationButton
+              direction="left"
+              onClick={(e) => {
+                e.stopPropagation();
+                onPrev();
+              }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              ←
+            </NavigationButton>
+          )}
+          {hasNext && onNext && (
+            <NavigationButton
+              direction="right"
+              onClick={(e) => {
+                e.stopPropagation();
+                onNext();
+              }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              →
+            </NavigationButton>
+          )}
           <Image
             src={imageUrl}
             alt={title}

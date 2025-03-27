@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PortfolioAlbum } from '../../types/portfolio';
@@ -35,6 +35,21 @@ const ModalContent = styled(motion.div)`
   position: relative;
   max-height: 90vh;
   overflow-y: auto;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #6B46C1;
+    border-radius: 4px;
+  }
 `;
 
 const CloseButton = styled(motion.button)`
@@ -102,24 +117,24 @@ const ProjectImage = styled.img`
 `;
 
 const ProjectInfo = styled.div`
-  padding: 1.5rem;
+  padding: 0.75rem;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(2px);
   border-radius: 8px;
-  margin: 0.75rem;
+  margin: 0.5rem;
 `;
 
 const ProjectTitle = styled.h3`
-  font-size: 1.25rem;
+  font-size: 0.8rem;
   color: ${({ theme }) => theme.colors.primary};
   margin: 0;
   text-align: center;
 `;
 
 const ProjectLocation = styled.p`
-  font-size: 0.9rem;
+  font-size: 0.6rem;
   color: white;
-  margin: 0.5rem 0 0;
+  margin: 0.25rem 0 0;
   text-align: center;
   font-style: italic;
 `;
@@ -142,6 +157,33 @@ const ImageFallback = styled.div`
   background-color: #f5f5f5;
   color: #666;
   font-size: 1.2rem;
+`;
+
+const ScrollToTopButton = styled(motion.button)`
+  position: fixed;
+  bottom: 4rem;
+  right: 4rem;
+  background: #6B46C1;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
 `;
 
 interface ProjectImageWrapperProps {
@@ -174,7 +216,32 @@ const ProjectImageWrapper: React.FC<ProjectImageWrapperProps> = ({ project, onCl
 };
 
 const AlbumModal: React.FC<AlbumModalProps> = ({ album, onClose, isLoading }) => {
-  const [selectedImage, setSelectedImage] = useState<{ url: string; title: string } | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{ url: string; title: string; index: number } | null>(null);
+  const [showScrollButton, setShowScrollButton] = useState(false);
+  const modalContentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (modalContentRef.current) {
+        setShowScrollButton(modalContentRef.current.scrollTop > 300);
+      }
+    };
+
+    const modalContent = modalContentRef.current;
+    if (modalContent) {
+      modalContent.addEventListener('scroll', handleScroll);
+      return () => modalContent.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
+
+  const scrollToTop = () => {
+    if (modalContentRef.current) {
+      modalContentRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   if (isLoading) {
     return (
@@ -186,6 +253,32 @@ const AlbumModal: React.FC<AlbumModalProps> = ({ album, onClose, isLoading }) =>
 
   if (!album) return null;
 
+  const handleNext = () => {
+    if (!selectedImage || !album) return;
+    const nextIndex = selectedImage.index + 1;
+    if (nextIndex < album.projects.length) {
+      const nextProject = album.projects[nextIndex];
+      setSelectedImage({
+        url: nextProject.imageUrl,
+        title: nextProject.title,
+        index: nextIndex
+      });
+    }
+  };
+
+  const handlePrev = () => {
+    if (!selectedImage || !album) return;
+    const prevIndex = selectedImage.index - 1;
+    if (prevIndex >= 0) {
+      const prevProject = album.projects[prevIndex];
+      setSelectedImage({
+        url: prevProject.imageUrl,
+        title: prevProject.title,
+        index: prevIndex
+      });
+    }
+  };
+
   return (
     <>
       <ModalOverlay
@@ -195,6 +288,7 @@ const AlbumModal: React.FC<AlbumModalProps> = ({ album, onClose, isLoading }) =>
         onClick={onClose}
       >
         <ModalContent
+          ref={modalContentRef}
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.8, opacity: 0 }}
@@ -207,7 +301,7 @@ const AlbumModal: React.FC<AlbumModalProps> = ({ album, onClose, isLoading }) =>
           </Header>
 
           <ProjectsGrid>
-            {album.projects.map(project => (
+            {album.projects.map((project, index) => (
               <ProjectCard
                 key={project.id}
                 whileHover={{ scale: 1.02 }}
@@ -215,7 +309,11 @@ const AlbumModal: React.FC<AlbumModalProps> = ({ album, onClose, isLoading }) =>
               >
                 <ProjectImageWrapper
                   project={project}
-                  onClick={() => setSelectedImage({ url: project.imageUrl, title: project.title })}
+                  onClick={() => setSelectedImage({ 
+                    url: project.imageUrl, 
+                    title: project.title,
+                    index
+                  })}
                 />
                 <ProjectInfo>
                   <ProjectTitle>{project.title}</ProjectTitle>
@@ -228,11 +326,30 @@ const AlbumModal: React.FC<AlbumModalProps> = ({ album, onClose, isLoading }) =>
       </ModalOverlay>
 
       <AnimatePresence>
+        {showScrollButton && (
+          <ScrollToTopButton
+            onClick={scrollToTop}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 0.9, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            ↑
+          </ScrollToTopButton>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
         {selectedImage && (
           <ImageModal
             imageUrl={importImage(selectedImage.url) || ''}
             title={selectedImage.title}
             onClose={() => setSelectedImage(null)}
+            onNext={handleNext}
+            onPrev={handlePrev}
+            hasNext={selectedImage.index < (album?.projects.length || 0) - 1}
+            hasPrev={selectedImage.index > 0}
           />
         )}
       </AnimatePresence>
