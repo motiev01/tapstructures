@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { PortfolioAlbum } from '../../types/portfolio';
-import AlbumCard from './AlbumCard';
+import { Service } from '../../types/services';
+import ServiceCard from './ServiceCard';
 
-interface PortfolioGridProps {
-  albums: PortfolioAlbum[];
-  onAlbumSelect: (album: PortfolioAlbum) => void;
+interface ServiceGridProps {
+  services: Service[];
+  onServiceSelect: (service: Service) => void;
 }
 
 const Grid = styled(motion.div)`
@@ -18,10 +18,6 @@ const Grid = styled(motion.div)`
   overflow-y: auto;
   scroll-behavior: smooth;
  
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -52,21 +48,21 @@ const itemVariants = {
   }
 };
 
-const PortfolioGrid: React.FC<PortfolioGridProps> = ({ albums, onAlbumSelect }) => {
+const ServiceGrid: React.FC<ServiceGridProps> = ({ services, onServiceSelect }) => {
   return (
     <Grid
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
-      {albums.map((album) => (
+      {services.map((service) => (
         <GridItem
-          key={album.id}
+          key={service.id}
           variants={itemVariants}
         >
-          <AlbumCard
-            album={album}
-            onClick={() => onAlbumSelect(album)}
+          <ServiceCard
+            service={service}
+            onClick={() => onServiceSelect(service)}
           />
         </GridItem>
       ))}
@@ -74,4 +70,4 @@ const PortfolioGrid: React.FC<PortfolioGridProps> = ({ albums, onAlbumSelect }) 
   );
 };
 
-export default PortfolioGrid; 
+export default ServiceGrid; 
