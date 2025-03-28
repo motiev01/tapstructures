@@ -52,7 +52,7 @@ const CloseButton = styled.button`
 
 const ServiceImage = styled.img`
   width: 100%;
-  height: 300px;
+  height: 450px;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 2rem;

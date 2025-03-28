@@ -12,14 +12,22 @@ interface ServiceGridProps {
 const Grid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  padding: 2rem;
-  max-height: calc(100vh - 200px);
+  gap: 3rem;
+  padding: 3rem;
+  max-width: 1600px;
+  margin: 0 auto;
+  max-height: calc(100vh - 150px);
   overflow-y: auto;
   scroll-behavior: smooth;
  
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+ 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    padding: 1.5rem;
+    gap: 2rem;
   }
 `;
 

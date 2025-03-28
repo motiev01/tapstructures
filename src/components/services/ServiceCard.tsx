@@ -12,7 +12,7 @@ interface ServiceCardProps {
 const Card = styled(motion.div)`
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 400px;
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
