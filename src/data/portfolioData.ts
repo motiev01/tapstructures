@@ -3,43 +3,21 @@ import { PortfolioAlbum } from '../types/portfolio';
 // Sample portfolio data
 export const portfolioAlbums: PortfolioAlbum[] = [
   {
-    id: 'residential',
+    id: 'generative-ai',
     title: 'Generative AI',
-    description: 'Exploring the intersection of artificial intelligence and creative expression.',
+    description: 'Exploring the intersection of artificial intelligence and creative expression in construction and architecture.',
     thumbnailUrl: 'PortfolioCollectionThumbnails/GenerativeAI.png',
     category: 'GenAI',
-    projects: [
-      {
-        id: 'res-1',
-        title: 'AI-Generated Artwork',
-        description: 'Digital art created using advanced AI models.',
-        imageUrl: 'PersonalPortfolio/port-img (1).jpg',
-        date: '2023',
-        location: 'Digital',
-        category: 'GenAI',
-        tags: ['AI', 'Digital Art', 'Machine Learning']
-      },
-      {
-        id: 'res-2',
-        title: 'Neural Network Visualizations',
-        description: 'Visual representations of AI model architectures.',
-        imageUrl: 'PersonalPortfolio/port-img (2).jpg',
-        date: '2023',
-        location: 'Digital',
-        category: 'GenAI',
-        tags: ['Neural Networks', 'Visualization', 'AI']
-      },
-      {
-        id: 'res-3',
-        title: 'AI-Enhanced Photography',
-        description: 'Photography enhanced through AI processing.',
-        imageUrl: 'PersonalPortfolio/port-img (3).jpg',
-        date: '2023',
-        location: 'Digital',
-        category: 'GenAI',
-        tags: ['AI', 'Photography', 'Digital Art']
-      }
-    ]
+    projects: Array.from({ length: 40 }, (_, i) => ({
+      id: `genai-${i + 1}`,
+      title: `AI Construction Vision ${i + 1}`,
+      description: 'AI-generated architectural and construction concepts exploring innovative design possibilities.',
+      imageUrl: `GenAI/GenAI-img-${i + 1}.png`,
+      date: '2024',
+      location: 'Digital',
+      category: 'GenAI',
+      tags: ['AI', 'Architecture', 'Construction', 'Innovation']
+    }))
   },
   {
     id: 'sustainable',
