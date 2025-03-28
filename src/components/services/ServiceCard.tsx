@@ -109,6 +109,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, onClick }) => {
           src={thumbnailSrc || ''} 
           alt={service.title}
           onError={handleImageError}
+          loading="lazy"
+          decoding="async"
         />
       ) : (
         <Fallback>

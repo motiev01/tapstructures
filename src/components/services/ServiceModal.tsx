@@ -110,7 +110,12 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ service, onClose }) => {
           onClick={e => e.stopPropagation()}
         >
           <CloseButton onClick={onClose}>&times;</CloseButton>
-          <ServiceImage src={thumbnailSrc || ''} alt={service.title} />
+          <ServiceImage 
+            src={thumbnailSrc || ''} 
+            alt={service.title} 
+            loading="lazy"
+            decoding="async"
+          />
           <ServiceTitle>{service.title}</ServiceTitle>
           <ServiceDescription>{service.description}</ServiceDescription>
           <FeaturesList>
